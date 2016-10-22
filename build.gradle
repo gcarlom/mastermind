@@ -1,0 +1,28 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'eclipse-wtp'
+
+repositories {
+   mavenCentral()
+}
+
+// [GC] Since I have JAVA_HOME pointing to java 7
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+war.archiveName "mastermind.war"
+
+dependencies {
+   providedCompile 'javax.servlet:servlet-api:2.5'
+   compile 'org.springframework:spring-webmvc:3.2.2.RELEASE'
+   runtime 'javax.servlet:jstl:1.1.2'
+}
+
+/* Change context path (base url). otherwise defaults to name of project */
+//jettyRunWar.contextPath = ''
+
+// [GC]: Added this lines to let spring boot run with tomcat 7.0 - otherwise you get an unsupported version (java7)
+ext['tomcat.version'] = '7.0.59'
+  dependencies {
+      compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
+}
