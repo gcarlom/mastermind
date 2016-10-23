@@ -1,5 +1,5 @@
 Mastermind
-#################
+=================
 
 A Web application using
 - Spring MVC
@@ -9,29 +9,28 @@ A Web application using
 
 ### Set up the development environment
 - Download/ clone the repository
-- import the project in your IDE
-- Make your changes
+- Import the project in your IDE
+- Make changes
 - Deploy on a web application server
 
 
 
-Using Gradle v.2.6
+##Running / Testing the application locally
 
-
-**Running / Testing the application locally**
 Using Gradle 2.6
 ```
 gradle jettyRun
 ```
-Deploys the application on localhost (Jetty), start the server
+Deploys the application on localhost, start the server (jetty)
 
+  - or -
 
 ```
 gradle jettyRunWar
 ```
 same as above but also creates the WAR file
 
-You can see the appliaction opening your browser at the URL
+Open your browser at the URL
 http://localhost:8080/mastermind/
 
 
