@@ -16,6 +16,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
       <param-name>contextConfigLocation</param-name>
       <param-value>com.gcmassari.mastermind.springconfig</param-value>
     </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
 
   <servlet-mapping>
