@@ -1,0 +1,11 @@
+@import url(//fonts.googleapis.com/css?family=Caveat);
+
+body {
+	color:black;
+}
+
+h1#title {
+	color:black;
+	font-size: 3.5em;
+	font-family: 'Caveat', sans-serif;
+}
