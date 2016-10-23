@@ -5,9 +5,9 @@ A Web application using
 - Spring MVC
 - Gradle to build project and generate the WAR file
 
-## Developer Instructions
+### Developer Instructions
 
-### Set up the development environment
+#### Set up the development environment
 - Download/ clone the repository
 - Import the project in your IDE
 - Make changes
@@ -15,7 +15,7 @@ A Web application using
 
 
 
-##Running / Testing the application locally
+####Running / Testing the application locally
 
 Using Gradle 2.6
 ```
@@ -23,12 +23,12 @@ gradle jettyRun
 ```
 Deploys the application on localhost, start the server (jetty)
 
-  - or -
+   or 
 
 ```
 gradle jettyRunWar
 ```
-same as above but also creates the WAR file
+Same as above but also creates the WAR file
 
 Open your browser at the URL
 http://localhost:8080/mastermind/
@@ -37,7 +37,7 @@ http://localhost:8080/mastermind/
 **NB** Tasks jettyRun and jettyRunWar are deprecated in Gradle 3.1
 
 
-### Building, Testing and Generating the WAR file
+#### Building, Testing and Generating the WAR file
 
 To Generate the WAR file
 ```
