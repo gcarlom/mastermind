@@ -9,3 +9,51 @@ h1#title {
 	font-size: 3.5em;
 	font-family: 'Caveat', sans-serif;
 }
+
+div#move-area {
+  font-size: 1.5em;
+}
+
+#move-area input.sequence {
+  font-size: 1.2em;
+  width: 0.7em;
+  padding: 1px 7px 1px 7px;
+  border-style: none;
+  border-radius: 20px;
+  color: black;
+}
+
+form.sequence-area  {
+  display: inline;
+}
+
+/*
+div.sequence-area {
+  background-color: brown;
+  display: inline;
+}
+*/
+
+#move-area input#pos-1 {
+  background-color: yellow;
+  border-color: gray;
+  border-style: solid;
+  border-width: thin;
+}
+
+#move-area input#pos-2 {
+  background-color: white;
+  color: black;
+  border-color: gray;
+  border-style: solid;
+  border-width: thin;
+}
+
+#move-area input#pos-3 {
+  background-color: red;
+}
+
+#move-area input#pos-4 {
+  background-color: black;
+  color: white;
+}

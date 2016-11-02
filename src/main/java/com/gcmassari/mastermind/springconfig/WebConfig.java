@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages="com.gcmassari.mastermind.controller")
+@ComponentScan(basePackages={"com.gcmassari.mastermind.controller","com.gcmassari.mastermind.data"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	// Allows direct access to static resources: equivalent for <mvc:resources/> tags

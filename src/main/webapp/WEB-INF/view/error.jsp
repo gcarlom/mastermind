@@ -14,11 +14,20 @@
 
  	</head>
 		<body>
-		<h1 id="title">Welcome to Mastermind !</h1>
-		
+		<h1 id="title">Mastermind</h1>
 		
 		<p>
+		Sorry, an error occurred:<br/>
+		${errorMessage}
+		</p>
+		<p>
+		Do you want to play again?
 			<a href="<c:url value="/play"/>"> Play</a>
+		</p>
+		<p>
+		<hr/>
+		Admin page
+			<a href="<c:url value="/session"/>"> Play</a>
 		</p>
 	</body>
 </html>
