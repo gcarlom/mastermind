@@ -37,5 +37,6 @@
 	<p>
 		<a href="<c:url value="/session"/>">Refresh</a>
 	</p>
+	<jsp:include page="../fragments/footer.jsp"/>
 </body>
 </html>

@@ -57,3 +57,13 @@ div.sequence-area {
   background-color: black;
   color: white;
 }
+
+footer {
+	margin-top: 3em;
+    padding: 1em;
+    clear: left;
+    text-align: center;
+	font-size: 0.75em;
+    color: black;
+    background-color: whitesmoke;
+}

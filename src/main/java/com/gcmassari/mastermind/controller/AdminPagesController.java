@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcmassari.mastermind.data.DataService;
+import com.gcmassari.mastermind.data.GameConstants;
 
 // TODO remove this class ?
 
@@ -17,6 +18,7 @@ public class AdminPagesController {
 
 	@RequestMapping("/session")
 	public String showRegisteredSessions(Model m) {
+		m.addAttribute("buildVersion", GameConstants.BUILD_VERSION);
 		m.addAttribute("sessions", dataService.getSessions());
 		return "admin/session";
 	}

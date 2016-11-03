@@ -1,18 +1,18 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Mastermind</title>
-    <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" type="text/css" />
+	<head>
+	<title>Mastermind</title>
+	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" type="text/css" />
 
- <%-- we need c:url to add the context path into the URL
-  c:url correctly resolves "/resources/css/main.css" -> "http://hostname/mastermind/resources/css/main.css"
-  If we used: <link href="/resources/css/main.css" ..> the browser would issue a GET for  "http://hostname/resources/css/main.css
-  and would get an 404 (not found) as response
- --%>
+	<%-- We need c:url to add the context path into the URL
+	  c:url correctly resolves "/resources/css/main.css" -> "http://hostname/mastermind/resources/css/main.css"
+	  If we used: <link href="/resources/css/main.css" ..> the browser would issue a GET for  "http://hostname/resources/css/main.css
+	  and would get an 404 (not found) as response
+	 --%>
 
- 	</head>
+	</head>
 		<body>
 		<h1 id="title">Welcome to Mastermind !</h1>
 		
@@ -20,5 +20,7 @@
 		<p>
 			<a href="<c:url value="/play"/>"> Play</a>
 		</p>
-	</body>
+		<jsp:include page="./fragments/footer.jsp"/>
+
+</body>
 </html>

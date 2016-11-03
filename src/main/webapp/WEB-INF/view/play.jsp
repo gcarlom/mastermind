@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<h1 id="title">Mastermind</h1>
+	<jsp:include page="./fragments/header.jsp" />
 	<div>
 
 		No. of moves so far: &nbsp;
@@ -20,9 +20,8 @@
 		<br /> Session ID: &nbsp;
 		<c:out value="${sessionId}" />
 		<br />
-		<!-- Secret seq: &nbsp; ---- <!-- <c:out value="${secret}" /> -->
-		<br /> <br />
-
+		<br />
+		<br />
 		<div id="move-area">
 
 			<c:if test="${not empty history}">
@@ -37,7 +36,6 @@
 				</table>
 			</c:if>
 
-			<!--  ** <c:out value="${history}" />  -->
 			<c:url value="/play" var="formAction" />
 			<!--  
 			<c:url value="/play" var="formActionOLD">
@@ -88,5 +86,6 @@
  -->
 		</div>
 	</div>
+	<jsp:include page="./fragments/footer.jsp"/>
 </body>
 </html>

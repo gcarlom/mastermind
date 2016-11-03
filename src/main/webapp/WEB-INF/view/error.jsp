@@ -14,7 +14,7 @@
 
  	</head>
 		<body>
-		<h1 id="title">Mastermind</h1>
+		<jsp:include page="./fragments/header.jsp" />
 		
 		<p>
 		Sorry, an error occurred:<br/>
@@ -24,10 +24,13 @@
 		Do you want to play again?
 			<a href="<c:url value="/play"/>"> Play</a>
 		</p>
-		<p>
 		<hr/>
+		<p>
 		Admin page
 			<a href="<c:url value="/session"/>"> Play</a>
 		</p>
-	</body>
+
+	<jsp:include page="./fragments/footer.jsp"/>
+
+</body>
 </html>

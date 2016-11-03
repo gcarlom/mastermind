@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gcmassari.mastermind.data.DataService;
+import com.gcmassari.mastermind.data.GameConstants;
 import com.gcmassari.mastermind.model.Result;
 import com.gcmassari.mastermind.model.Round;
 import com.gcmassari.mastermind.model.Sequence;
@@ -28,7 +29,7 @@ public class GameController {
 
 	@RequestMapping({"/","/home"})
 	public String showHomePage(Model m) {
-		m.addAttribute("name", "Mastermind");
+		m.addAttribute("buildVersion", GameConstants.BUILD_VERSION);
 		return "home";
 	}
 
@@ -38,6 +39,7 @@ public class GameController {
 			@RequestParam(value = "move", required = false) String move,
 			Model m) {
 
+		m.addAttribute("buildVersion", GameConstants.BUILD_VERSION);
 		List<Round> history = new ArrayList<Round>();
 		//		m.addAttribute("name", "Mastermind");
 
