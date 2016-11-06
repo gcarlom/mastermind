@@ -16,15 +16,13 @@ import com.gcmassari.mastermind.model.Sequence;
 
 @Service // TODO or declare as more general @Component, of as @Repository??
 public class DataServiceMock implements DataService {
-	// TODO Implement interface 
 	// add logging private static final Log LOG = new Log() {
-		
 
-	private static Map<String, List<Round>> histories = new HashMap<String, List<Round>>();//ArrayList<Round>();
+	private static Map<String, List<Round>> histories = new HashMap<String, List<Round>>();// ArrayList<Round>();
 	private static Map<String, Sequence> secretSequences = new HashMap<String, Sequence>();
-	
+
 	public List<Round> getHistory(String sessionId) {
-		if (sessionId ==null) {
+		if (sessionId == null) {
 			// TODO Log.warn(), remove sysout
 			System.out.println("WARNING: .getHistory(): move or seesionId invalid!");
 			return null;
@@ -32,21 +30,21 @@ public class DataServiceMock implements DataService {
 		// TODO check if sessId is not registered / invalid
 		return histories.get(sessionId);
 	}
-	
+
 	public List<Round> getHistoryAfterMove(Sequence move, String sessionId) {
-		if ((move != null) && (sessionId !=null)) {
+		if ((move != null) && (sessionId != null)) {
 			// TODO check if move & sessionId are Valid()!
-				
+
 			Sequence secretSequence = getSecretSequence(sessionId);
 			Result res = secretSequence.compareTo(move);
 			Round latestRound = new Round(move, res);
 			List<Round> history = getHistory(sessionId);
 			history.add(latestRound);
 			return history;
-		} 
+		}
 		// if move or sessionId is invalid
 		// TODO Log.warn(), remove sysout
-		System.out.println("WARNING: .getHistory(): move or seesionId invalid!");
+		System.out.println("WARNING: .getHistory(): move or sessionId invalid!");
 		return null;
 	}
 
@@ -60,7 +58,7 @@ public class DataServiceMock implements DataService {
 		do {
 			newSessionId = createNewSessionId();
 		} while (secretSequences.containsKey(newSessionId));
-		
+
 		Sequence newSecretSequence = Sequence.random();
 		secretSequences.put(newSessionId, newSecretSequence);
 		histories.put(newSessionId, new ArrayList<Round>());
@@ -69,6 +67,9 @@ public class DataServiceMock implements DataService {
 
 	@Override
 	public boolean isRegisteredPlay(String sessionId) {
+		if (sessionId == null) {
+			return false;
+		}
 		return secretSequences.containsKey(sessionId);
 	}
 
@@ -81,10 +82,10 @@ public class DataServiceMock implements DataService {
 		}
 		return res;
 	}
-	
+
 	private static String createNewSessionId() {
-		return Long.toString(System.currentTimeMillis(),16);
-		
+		return Long.toString(System.currentTimeMillis(), 16);
+
 	}
 
 	@Override
@@ -92,8 +93,10 @@ public class DataServiceMock implements DataService {
 		Sequence seqRemoved = secretSequences.remove(sessionId);
 		List<Round> histRemoved = histories.remove(sessionId);
 
-		// returns true if rmeoval was ok
-		return (seqRemoved!= null && histRemoved != null);
+		// returns true if removal was ok
+		return (seqRemoved != null && histRemoved != null);
 	}
+
+	// TODO Add a service (cron job?) which removes all sessions older than xxx days
 
 }

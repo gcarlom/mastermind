@@ -10,8 +10,9 @@ h1#title {
 	font-family: 'Caveat', sans-serif;
 }
 
-div#move-area {
+div#history-area {
   font-size: 1.5em;
+	margin-bottom: 2em;
 }
 
 #move-area input.sequence {
@@ -34,6 +35,8 @@ div.sequence-area {
 }
 */
 
+/* TODO remove #move-area or re-introduce a div with this id */
+/* TODO remove those lines if more needed (in case you display the color in another way not as single input text fields */
 #move-area input#pos-1 {
   background-color: yellow;
   border-color: gray;
@@ -66,4 +69,18 @@ footer {
 	font-size: 0.75em;
     color: black;
     background-color: whitesmoke;
+}
+
+.validation-error {
+	font-size: 0.9em;
+	color: red;
+	font-style: italic;
+}
+
+input#move {
+	font-size: 1.5em;
+}
+
+span.validation-error ~ input#move {
+    background-color: #f8f85f;
 }

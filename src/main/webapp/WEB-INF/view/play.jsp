@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -7,57 +8,53 @@
 <title>Mastermind</title>
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet"
 	type="text/css" />
-
-
-
 </head>
+
 <body>
 	<jsp:include page="./fragments/header.jsp" />
-	<div>
 
+	<div>
 		No. of moves so far: &nbsp;
 		<c:out value="${fn:length(history)}" />
 		<br /> Session ID: &nbsp;
-		<c:out value="${sessionId}" />
+		<c:out value="${moveForm.sessionId}" />
 		<br />
 		<br />
 		<br />
-		<div id="move-area">
 
 			<c:if test="${not empty history}">
+			<div id="history-area">
 				<table>
 					<c:forEach items="${history}" var="round" varStatus="loop">
 						<tr>
-							<td>${loop.index + 1}</td>
+							<td>${loop.index+1}:</td>
 							<td>${round.sequence}</td>
 							<td>${round.result}</td>
 						</tr>
 					</c:forEach>
 				</table>
-			</c:if>
+			</div>
+		</c:if>
 
 			<c:url value="/play" var="formAction" />
-			<!--  
-			<c:url value="/play" var="formActionOLD">
-				< c:param name="sessionId" value="${sessionId}"/>
-			</c:url>
-			 -->
-			
+
 			<c:choose>
 				<c:when test="${not endOfGame}">
-					<%-- TODO use post --%>
-					<form class="sequence-area" action=<c:url value="/play" /> autocomplete="off" method="get">
-						<div>
-							<input name="move" type="text" value="" autofocus autocomplete="off"></input>
-							<input name="sessionId" type="hidden" value="${sessionId}" />
-							<%-- sessionID from session  --%>
-							<button>Send my Move</button>
-						</div>
-					</form>
+				<%-- Game is not over yet: get next move --%>
+					<form:form modelAttribute="moveForm" action="${formAction}" cssStyle="sequence-area" autocomplete="off" method="post">
+						<form:errors path="move" cssClass="validation-error"/><br/>
+						<form:input path="move" type="text" autofocus="autofocus" autocomplete="off"/> <!-- bind to moveForm.move-->
+
+						<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
+						<button>Send my Move</button>
+					</form:form>
 				</c:when>
+
 				<c:otherwise>
+				<%-- Game is over --%>
 					<c:choose>
 						<c:when test="${userWon}">
+						<%-- TODO use localized messages here --%>
 							<h2>Congratulations, you won !</h2>
 						</c:when>
 						<c:otherwise>
@@ -70,21 +67,8 @@
 					</p>
 				</c:otherwise>
 			</c:choose>
-			
-			<!-- 
 
-		<form class="sequence-area" action="${formAction}" method="get">
-          <input class="sequence" id="pos-1" maxlength="1" type="text" />
-          <input class="sequence" id="pos-2" maxlength="1" type="text" size="1"/>
-          <input class="sequence" id="pos-3" maxlength="1" type="text" size="1"/>
-          <input class="sequence" id="pos-4" maxlength="1" type="text" size="1"/>
-        &nbsp;
-        <button> Send </button>
- 
-         <a href="${formAction}">SEND THIS </a>
-      </form>
- -->
-		</div>
+
 	</div>
 	<jsp:include page="./fragments/footer.jsp"/>
 </body>

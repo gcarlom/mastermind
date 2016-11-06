@@ -15,10 +15,9 @@
 	</head>
 		<body>
 		<h1 id="title">Welcome to Mastermind !</h1>
-		
-		
+
 		<p>
-			<a href="<c:url value="/play"/>"> Play</a>
+			<a href="<c:url value="/play"/>"> Start a new game</a>
 		</p>
 		<jsp:include page="./fragments/footer.jsp"/>
 
