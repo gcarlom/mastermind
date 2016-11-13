@@ -1,9 +1,7 @@
 package com.gcmassari.mastermind.controller;
 
-import static com.gcmassari.mastermind.data.GameConstants.HOLES_NO;
-import static com.gcmassari.mastermind.data.GameConstants.MAX_NO_MOVES;
-
-import java.util.List;
+import static com.gcmassari.mastermind.data.GameParameters.HOLES_NO;
+import static com.gcmassari.mastermind.data.GameParameters.MAX_NO_MOVES;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gcmassari.mastermind.data.Constants;
 import com.gcmassari.mastermind.data.DataService;
-import com.gcmassari.mastermind.data.GameConstants;
+import com.gcmassari.mastermind.data.History;
 import com.gcmassari.mastermind.model.MoveForm;
 import com.gcmassari.mastermind.model.Result;
-import com.gcmassari.mastermind.model.Round;
 import com.gcmassari.mastermind.model.Sequence;
 import com.gcmassari.mastermind.validators.MoveValidator;
 
@@ -34,16 +32,20 @@ public class GameController {
 
 	@RequestMapping({"/","/home"})
 	public String showHomePage(Model m) {
-		m.addAttribute("buildVersion", GameConstants.BUILD_VERSION);
+		m.addAttribute("buildVersion", Constants.BUILD_VERSION);
 		return "home";
 	}
 
 	@RequestMapping(value = "/play", method = RequestMethod.GET)
 	public String showMoveForm (Model m) {
 
-		m.addAttribute("buildVersion", GameConstants.BUILD_VERSION);
+		m.addAttribute("buildVersion", Constants.BUILD_VERSION);
 
 		String sessionId = dataService.getSessionIdForNewMatch();
+		if (sessionId == null) {
+		  m.addAttribute("errorMessage", "Can't create new game session.");
+          return "error";
+		}
 
 		MoveForm moveForm = new MoveForm();
 		moveForm.setSessionId(sessionId);
@@ -55,7 +57,7 @@ public class GameController {
 	@RequestMapping(value = "/play", method = RequestMethod.POST)
 	public String evaluateMove (@ModelAttribute("moveForm") MoveForm moveForm, BindingResult result, Model m) {
 
-		m.addAttribute("buildVersion", GameConstants.BUILD_VERSION + "(c)");
+		m.addAttribute("buildVersion", Constants.BUILD_VERSION + "(c)");
 		String sessionId = moveForm.getSessionId();
 
 		if (!dataService.isRegisteredPlay(sessionId)) {
@@ -68,7 +70,7 @@ public class GameController {
 
 		if (result.hasErrors()) {
 			m.addAttribute("moveForm", moveForm);
-			List<Round> history = dataService.getHistory(sessionId);
+			History history = dataService.getHistory(sessionId);
 			m.addAttribute("history", history);
 			return "play";
 		}
@@ -76,8 +78,7 @@ public class GameController {
 		// Validator checks also that move isn't null
 		String move = moveForm.getMove().trim();
 		Sequence latestMove = new Sequence(move); // get latest move from form parameter
-		List<Round> history = dataService.getHistoryAfterMove(latestMove, sessionId);
-		int movesDone = history.size();
+		History history = dataService.getHistoryAfterMove(latestMove, sessionId);
 		
 		MoveForm nextMoveForm = new MoveForm();
 		nextMoveForm.setSessionId(sessionId);
@@ -85,10 +86,10 @@ public class GameController {
 		m.addAttribute("history", history);
 		boolean endOfTheGame = false;
 		
-		if ( SEQUENCE_FOUND.equals(history.get(movesDone-1).getResult()) ) {
+		if ( SEQUENCE_FOUND.equals(history.getLastMove().getResult()) ) {
 			endOfTheGame = true;
 			m.addAttribute("userWon", true);
-		} else if (movesDone >= MAX_NO_MOVES) {
+		} else if (history.getLength() >= MAX_NO_MOVES) {
 			endOfTheGame = true;
 			m.addAttribute("userWon", false);
 			Sequence secretSequence = dataService.getSecretSequence(sessionId);

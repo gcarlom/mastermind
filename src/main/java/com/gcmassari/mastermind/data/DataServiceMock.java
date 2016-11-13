@@ -1,13 +1,13 @@
 package com.gcmassari.mastermind.data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.gcmassari.mastermind.model.Result;
@@ -18,10 +18,12 @@ import com.gcmassari.mastermind.model.Sequence;
 public class DataServiceMock implements DataService {
 	// add logging private static final Log LOG = new Log() {
 
-	private static Map<String, List<Round>> histories = new HashMap<String, List<Round>>();// ArrayList<Round>();
-	private static Map<String, Sequence> secretSequences = new HashMap<String, Sequence>();
+  // TODO test the new ConcurrentHashMap<String, String>();
+	private static Map<String, History> histories = new ConcurrentHashMap<String, History>();
+	private static Map<String, Sequence> secretSequences = new ConcurrentHashMap<String, Sequence>(); // TODO use: new ConcurrentHashMap<String, String>();
+	private static Map<String, Date> sessionTimestamps = new ConcurrentHashMap<String, Date>(); // TODO use: new ConcurrentHashMap<String, String>();
 
-	public List<Round> getHistory(String sessionId) {
+	public History getHistory(String sessionId) {
 		if (sessionId == null) {
 			// TODO Log.warn(), remove sysout
 			System.out.println("WARNING: .getHistory(): move or seesionId invalid!");
@@ -31,14 +33,14 @@ public class DataServiceMock implements DataService {
 		return histories.get(sessionId);
 	}
 
-	public List<Round> getHistoryAfterMove(Sequence move, String sessionId) {
+	public History getHistoryAfterMove(Sequence move, String sessionId) {
 		if ((move != null) && (sessionId != null)) {
 			// TODO check if move & sessionId are Valid()!
 
 			Sequence secretSequence = getSecretSequence(sessionId);
 			Result res = secretSequence.compareTo(move);
 			Round latestRound = new Round(move, res);
-			List<Round> history = getHistory(sessionId);
+			History history = getHistory(sessionId);
 			history.add(latestRound);
 			return history;
 		}
@@ -54,18 +56,26 @@ public class DataServiceMock implements DataService {
 
 	@Override
 	public String getSessionIdForNewMatch() {
-		String newSessionId;
-		do {
-			newSessionId = createNewSessionId();
-		} while (secretSequences.containsKey(newSessionId));
+	    if (tooManyActiveSessions()) {
+	        return null;
+	    }
+	    String newSessionId;
+	    do {
+	        newSessionId = createNewSessionId();
+	    } while (secretSequences.containsKey(newSessionId));
 
-		Sequence newSecretSequence = Sequence.random();
-		secretSequences.put(newSessionId, newSecretSequence);
-		histories.put(newSessionId, new ArrayList<Round>());
-		return newSessionId;
+	    Sequence newSecretSequence = Sequence.random();
+	    secretSequences.put(newSessionId, newSecretSequence);
+	    histories.put(newSessionId, new History());
+	    sessionTimestamps.put(newSessionId, new Date());
+	    return newSessionId;
 	}
 
-	@Override
+	private boolean tooManyActiveSessions() {
+        return (getSessions().keySet().size() > Constants.MAX_GAME_NUMBER);
+    }
+
+    @Override
 	public boolean isRegisteredPlay(String sessionId) {
 		if (sessionId == null) {
 			return false;
@@ -88,14 +98,44 @@ public class DataServiceMock implements DataService {
 
 	}
 
+	// TODO make it synchronized ?
+	/**
+	 * Remove any reference to the passed sessionId
+	 * <br/>
+	 * In practice: remove the associated <li>secret sequence</li> and <li>history </li>from storage)
+	 */
 	@Override
 	public boolean removeSession(String sessionId) {
 		Sequence seqRemoved = secretSequences.remove(sessionId);
-		List<Round> histRemoved = histories.remove(sessionId);
+		History listRemoved = histories.remove(sessionId);
+		Date timeStamp = sessionTimestamps.remove(sessionId);
 
 		// returns true if removal was ok
-		return (seqRemoved != null && histRemoved != null);
+		return (seqRemoved != null && listRemoved != null && timeStamp != null);
 	}
+
+    @Override
+    public Long getSessionNumber() {
+        return (long) getSessions().keySet().size();
+    }
+
+    @Override
+    public Date getSessionTimestamp(String sessionId) {
+        return sessionTimestamps.get(sessionId);
+    }
+
+    @Override
+    public List<SessionInfo> getSessionInfo() {
+        List<SessionInfo> res = new ArrayList<SessionInfo>();
+        for (String sessId : sessionTimestamps.keySet()) {
+            Date timestamp = sessionTimestamps.get(sessId);
+            Sequence secret = secretSequences.get(sessId);
+            History history = histories.get(sessId);
+
+            res.add(new SessionInfo(sessId, timestamp, secret, history));
+        }
+        return res;
+    }
 
 	// TODO Add a service (cron job?) which removes all sessions older than xxx days
 

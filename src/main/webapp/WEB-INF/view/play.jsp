@@ -15,7 +15,7 @@
 
 	<div>
 		No. of moves so far: &nbsp;
-		<c:out value="${fn:length(history)}" />
+		<c:out value="${history.length}" />
 		<br /> Session ID: &nbsp;
 		<c:out value="${moveForm.sessionId}" />
 		<br />
@@ -25,7 +25,7 @@
 			<c:if test="${not empty history}">
 			<div id="history-area">
 				<table>
-					<c:forEach items="${history}" var="round" varStatus="loop">
+					<c:forEach items="${history.rounds}" var="round" varStatus="loop">
 						<tr>
 							<td>${loop.index+1}:</td>
 							<td>${round.sequence}</td>

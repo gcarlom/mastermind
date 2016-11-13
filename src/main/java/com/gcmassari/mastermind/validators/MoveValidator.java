@@ -9,7 +9,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.gcmassari.mastermind.data.GameConstants;
+import com.gcmassari.mastermind.data.Constants;
+import com.gcmassari.mastermind.data.GameParameters;
 import com.gcmassari.mastermind.model.Color;
 import com.gcmassari.mastermind.model.MoveForm;
 
@@ -31,12 +32,12 @@ public class MoveValidator  implements Validator{
 		}
 
 		String move = moveForm.getMove().trim();
-		if (move.length() != GameConstants.HOLES_NO) {
+		if (move.length() != GameParameters.HOLES_NO) {
 			errors.rejectValue(
 				"move",
 				"play.move.invalidLength",
-				new Object[]{Integer.valueOf(GameConstants.HOLES_NO)},
-				"Sequences should have " + GameConstants.HOLES_NO + " colors."
+				new Object[]{Integer.valueOf(GameParameters.HOLES_NO)},
+				"Sequences should have " + GameParameters.HOLES_NO + " colors."
 			);
 		}
 		List<Character> invalidChars = new ArrayList<Character>();

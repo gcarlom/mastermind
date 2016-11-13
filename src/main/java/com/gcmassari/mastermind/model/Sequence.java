@@ -2,7 +2,7 @@ package com.gcmassari.mastermind.model;
 
 import java.util.Random;
 
-import static com.gcmassari.mastermind.data.GameConstants.*;
+import static com.gcmassari.mastermind.data.GameParameters.*;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
