@@ -11,8 +11,18 @@ h1#title {
 }
 
 div#history-area {
-  font-size: 1.5em;
+	font-size: 1.5em;
 	margin-bottom: 2em;
+}
+
+div#history-area td#round-result{
+	font-size: 0.8em;
+	padding-left: 0.5em;
+}
+
+
+div#history-area td#round-index {
+	color: gray;
 }
 
 #move-area input.sequence {
@@ -83,4 +93,10 @@ input#move {
 
 span.validation-error ~ input#move {
     background-color: #f8f85f;
+}
+
+table.session-info, table.session-info th, table.session-info td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
 }

@@ -24,12 +24,12 @@
 
 			<c:if test="${not empty history}">
 			<div id="history-area">
-				<table>
-					<c:forEach items="${history.rounds}" var="round" varStatus="loop">
+				<table id="history-table">
+					<c:forEach items="${history.rounds}" var="round" varStatus="counter">
 						<tr>
-							<td>${loop.index+1}:</td>
-							<td>${round.sequence}</td>
-							<td>${round.result}</td>
+							<td id="round-index">${counter.count}.&nbsp;</td>
+							<td id="round-sequence">${round.sequence}</td>
+							<td id="round-result">${round.result}</td>
 						</tr>
 					</c:forEach>
 				</table>
