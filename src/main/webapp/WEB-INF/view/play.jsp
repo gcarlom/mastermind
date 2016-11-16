@@ -14,8 +14,15 @@
 	<jsp:include page="./fragments/header.jsp" />
 
 	<div>
-		No. of moves so far: &nbsp;
-		<c:out value="${history.length}" />
+		<c:choose>
+			<c:when test="${not empty history}">
+				No. of moves so far: &nbsp;
+				<c:out value="${history.length}" />
+			</c:when>
+			<c:otherwise>
+				New game
+			</c:otherwise>
+		</c:choose>
 		<br /> Session ID: &nbsp;
 		<c:out value="${moveForm.sessionId}" />
 		<br />
