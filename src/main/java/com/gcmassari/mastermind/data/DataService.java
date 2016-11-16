@@ -21,8 +21,6 @@ public interface DataService {
 
 	public Map<String, String> getSessions();
 
-	public Long getSessionNumber();
-
 	public Date getSessionTimestamp(String sessionId);
 
     public List<SessionInfo> getSessionInfo();

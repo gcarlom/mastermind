@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gcmassari.mastermind.data.DataService;
 import com.gcmassari.mastermind.data.Constants;
 
-// TODO remove this class ?
+// TODO Add login to access to this page, add commands to remove (last) xxx sessions (cron job params)?
 
 @Controller
 public class AdminPagesController {

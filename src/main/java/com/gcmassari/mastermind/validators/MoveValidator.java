@@ -9,7 +9,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.gcmassari.mastermind.data.Constants;
 import com.gcmassari.mastermind.data.GameParameters;
 import com.gcmassari.mastermind.model.Color;
 import com.gcmassari.mastermind.model.MoveForm;

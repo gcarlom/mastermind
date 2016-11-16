@@ -1,10 +1,9 @@
 package com.gcmassari.mastermind.model;
 
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.assertThat;
 
-import org.hamcrest.core.IsEqual;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

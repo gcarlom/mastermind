@@ -16,12 +16,12 @@ import com.gcmassari.mastermind.model.Sequence;
 
 @Service // TODO or declare as more general @Component, of as @Repository??
 public class DataServiceMock implements DataService {
-	// add logging private static final Log LOG = new Log() {
+	// TODO add logging private static final Log LOG = new Log() {
 
   // TODO test the new ConcurrentHashMap<String, String>();
 	private static Map<String, History> histories = new ConcurrentHashMap<String, History>();
-	private static Map<String, Sequence> secretSequences = new ConcurrentHashMap<String, Sequence>(); // TODO use: new ConcurrentHashMap<String, String>();
-	private static Map<String, Date> sessionTimestamps = new ConcurrentHashMap<String, Date>(); // TODO use: new ConcurrentHashMap<String, String>();
+	private static Map<String, Sequence> secretSequences = new ConcurrentHashMap<String, Sequence>();
+	private static Map<String, Date> sessionTimestamps = new ConcurrentHashMap<String, Date>();
 
 	public History getHistory(String sessionId) {
 		if (sessionId == null) {
@@ -113,11 +113,6 @@ public class DataServiceMock implements DataService {
 		// returns true if removal was ok
 		return (seqRemoved != null && listRemoved != null && timeStamp != null);
 	}
-
-    @Override
-    public Long getSessionNumber() {
-        return (long) getSessions().keySet().size();
-    }
 
     @Override
     public Date getSessionTimestamp(String sessionId) {
