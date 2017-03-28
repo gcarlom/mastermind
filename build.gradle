@@ -7,7 +7,7 @@ repositories {
    mavenCentral()
 }
 
-// [GC] Since I have JAVA_HOME pointing to java 7
+// Use Java 6 for server compatibility
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
@@ -23,12 +23,17 @@ dependencies {
    
    compile 'org.apache.commons:commons-lang3:3.5'
    
-   /* for Junit tests */
+   /* for JUnit tests */
    testCompile 'junit:junit:4.12'
 }
 
 /* Change context path (base url). otherwise defaults to name of project */
 //jettyRunWar.contextPath = ''
+
+jettyRun {
+    reload = "automatic"
+    scanIntervalSeconds = 1
+ }
 
 // [GC]: Added this lines to let spring boot run with tomcat 7.0 - otherwise you get an unsupported version (java7)
 ext['tomcat.version'] = '7.0.59'
