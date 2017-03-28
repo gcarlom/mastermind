@@ -39,12 +39,20 @@ public class Sequence {
 		return color[position];
 	}
 	
+	
+	public String getColorAtPos(int position) {
+	        if (position <0 || position >= HOLES_NO ) {
+	            throw new IllegalArgumentException("Position out of bound. Should be between 0 and " + (HOLES_NO-1) + ", was "+ position );
+	        }
+	        return color[position].name(); // returns the enum value exactly as defined : replace it with a pre-defined string so that enum field might ba defined w/o problems 
+	}
+	
 	public Result compareTo(Sequence other) {
 		int blacks = 0;
 		int whites = 0;
 		boolean toIgnore[] = new boolean[HOLES_NO];
 		boolean computedForWhites[] = new boolean[HOLES_NO];
-		// compute "backs" 
+		// compute "blacks" 
 		for (int i = 0; i < HOLES_NO; i++) {
 			if (color[i] == other.colorAt(i)) {
 				blacks++;
@@ -81,6 +89,10 @@ public class Sequence {
 		return new Sequence(colArray);
 	}
 
+	public int getLength() {
+	    return color.length;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer(HOLES_NO);
@@ -89,6 +101,10 @@ public class Sequence {
 		}
 		return sb.toString();
 		
+	}
+
+	public String getAsString() {
+	    return toString();
 	}
 
 	private void throwExceptionIfParameterIsInvalid(String seq) {

@@ -14,7 +14,7 @@ import com.gcmassari.mastermind.model.Color;
 import com.gcmassari.mastermind.model.MoveForm;
 
 @Component
-public class MoveValidator  implements Validator{
+public class MoveValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {

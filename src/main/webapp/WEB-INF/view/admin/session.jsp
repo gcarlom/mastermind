@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -26,7 +27,8 @@
 
 			<c:otherwise>
 				<p>
-				Active game sessions
+				Active game sessions: <c:out value="${fn:length(sessionInfo)}"></c:out>
+				</p>
 				<table class='session-info'>
 					<tr>
 						<th>#</th>
@@ -55,7 +57,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-				</p>
 			</c:otherwise>
 		</c:choose>
 

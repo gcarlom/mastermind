@@ -29,7 +29,7 @@
 		<br />
 		<br />
 
-			<c:if test="${not empty history}">
+		<c:if test="${not empty history}">
 			<div id="history-area">
 				<table id="history-table">
 					<c:forEach items="${history.rounds}" var="round" varStatus="counter">
@@ -43,7 +43,10 @@
 			</div>
 		</c:if>
 
-			<c:url value="/play" var="formAction" />
+			<c:url value="/play" var="formAction" >
+				<%-- Comment following line if you prefer not to have sessionId in URL --%>
+				<c:param name="sessionId" value="${moveForm.sessionId}"/>
+			</c:url>
 
 			<c:choose>
 				<c:when test="${not endOfGame}">
@@ -52,7 +55,9 @@
 						<form:errors path="move" cssClass="validation-error"/><br/>
 						<form:input path="move" type="text" autofocus="autofocus" autocomplete="off"/> <!-- bind to moveForm.move-->
 
-						<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
+				<%-- Uncomment this if you prefer not to have sessionId in URL
+					<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId--> 
+				--%>
 						<button>Send my Move</button>
 					</form:form>
 				</c:when>

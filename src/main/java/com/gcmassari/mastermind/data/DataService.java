@@ -19,7 +19,7 @@ public interface DataService {
 
 	public boolean isRegisteredPlay(String sessionId);
 
-	public Map<String, String> getSessions();
+	public Map<String, String> getSessionsIdAndSecretSequences();
 
 	public Date getSessionTimestamp(String sessionId);
 
