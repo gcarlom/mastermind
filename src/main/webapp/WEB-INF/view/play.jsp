@@ -35,7 +35,16 @@
 					<c:forEach items="${history.rounds}" var="round" varStatus="counter">
 						<tr>
 							<td id="round-index">${counter.count}.&nbsp;</td>
-							<td id="round-sequence">${round.sequence}</td>
+							<td id="round-sequence">
+<%-- 							<td id="round-sequence">${round.sequence}</td> --%>
+							<c:set var="sequence"  value="${round.sequence.asString}"/>
+							<c:forEach var="i" begin="0" end="${fn:length(sequence)-1}" step="1">
+							<c:set var="color"  value="${fn:substring(sequence, i, i+1)}"/>
+								<span class="color color-${color}">
+									<c:out value="${color}" />
+								</span>
+							</c:forEach>
+							</td>
 							<td id="round-result">${round.result}</td>
 						</tr>
 					</c:forEach>
@@ -56,7 +65,7 @@
 						<form:input path="move" type="text" autofocus="autofocus" autocomplete="off"/> <!-- bind to moveForm.move-->
 
 				<%-- Uncomment this if you prefer not to have sessionId in URL
-					<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId--> 
+					<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
 				--%>
 						<button>Send my Move</button>
 					</form:form>

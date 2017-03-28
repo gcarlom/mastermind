@@ -6,7 +6,7 @@ body {
 
 h1#title {
 	color:black;
-	font-size: 3.5em;
+	font-size: 4.0em;
 	font-family: 'Caveat', sans-serif;
 }
 
@@ -92,11 +92,49 @@ input#move {
 }
 
 span.validation-error ~ input#move {
-    background-color: #f8f85f;
+    background-color: #f8dd5f;
 }
 
 table.session-info, table.session-info th, table.session-info td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 5px;
+}
+
+span.color {
+    border-radius: 1.1em;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    margin-left:0.1em;
+    margin-right: 0.1em
+}
+
+span.color-A {
+	background-color: white;
+}
+
+span.color-B {
+	background-color: yellow;
+}
+
+span.color-C {
+	background-color: red;
+}
+
+span.color-D {
+	background-color: green;
+	color: white;
+}
+
+span.color-E {
+	background-color: blue;
+	color: white;
+}
+
+span.color-F {
+	background-color: black;
+	color: white;
 }
