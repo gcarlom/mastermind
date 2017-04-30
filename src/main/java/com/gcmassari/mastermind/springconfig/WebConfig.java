@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan(basePackages={
         "com.gcmassari.mastermind.controller",
-        "com.gcmassari.mastermind.cronjobs",
+        "com.gcmassari.mastermind.cronjobs", // TODO GC remove in case no cron job is needed
         "com.gcmassari.mastermind.data",
         "com.gcmassari.mastermind.validators",
 })
@@ -42,7 +42,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new StandardServletMultipartResolver();
     }
 
-	// TODO use (multi-language?) properties
+	// TODO GC: use (multi-language?) properties
 	@Bean
 	public ReloadableResourceBundleMessageSource messageSource() {
 		ReloadableResourceBundleMessageSource  messageSource = new ReloadableResourceBundleMessageSource();

@@ -75,7 +75,7 @@
 				<%-- Game is over --%>
 					<c:choose>
 						<c:when test="${userWon}">
-						<%-- TODO use localized messages here --%>
+						<%-- TODO GC: use localized messages here --%>
 							<h2>Congratulations, you won !</h2>
 						</c:when>
 						<c:otherwise>

@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.gcmassari.mastermind.model.Color;
 
-// TODO consider to make Sequence<Parameters>
+// TODO GC: consider to make Sequence<Parameters>
 // where params contain a list of Colors and the LENGTH (numbers of holes) 
 public class Sequence {
 	private static final Color[] COLORS = Color.values();

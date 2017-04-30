@@ -143,7 +143,6 @@ public class SequenceTest {
 		assertThat(s.colorAt(3), is(Color.D)); 
 	}
 
-	// TODO fix this by defining Sequence.equals() 
 	@Test
 	public void testParsedSequence() {
 		assertThat(Sequence.parse("ABFE").getSequence(), is(new Sequence("ABFE"))); 
