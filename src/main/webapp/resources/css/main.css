@@ -4,7 +4,7 @@ body {
 	color:black;
 }
 
-h1#title {
+.logo {
 	color:black;
 	font-size: 4.0em;
 	font-family: 'Caveat', sans-serif;
@@ -45,8 +45,8 @@ div.sequence-area {
 }
 */
 
-/* TODO remove #move-area or re-introduce a div with this id */
-/* TODO remove those lines if more needed (in case you display the color in another way not as single input text fields */
+/* TODO GC: remove #move-area or re-introduce a div with this id */
+/* TODO GC: remove those lines if more needed (in case you display the color in another way not as single input text fields */
 #move-area input#pos-1 {
   background-color: yellow;
   border-color: gray;
@@ -79,6 +79,25 @@ footer {
 	font-size: 0.75em;
     color: black;
     background-color: whitesmoke;
+}
+
+.login {
+	font-size: 2.2em;
+}
+
+input.login {
+    margin-left: 1em;
+    border-radius: 0.15em;
+    border-color: lightgray;
+    border-width: thin;
+    background-color: #f9f9f9;
+}
+
+button.login {
+    border-radius: 0.15em;
+    margin-left: 5.5em;
+    margin-top: 0.8em;
+    background-color: #eaeaea;
 }
 
 .validation-error {

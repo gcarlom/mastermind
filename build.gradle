@@ -22,6 +22,7 @@ dependencies {
    compile 'taglibs:standard:1.1.2'
    
    compile 'org.apache.commons:commons-lang3:3.5'
+   compile 'commons-codec:commons-codec:1.9'
    
    /* for JUnit tests */
    testCompile 'junit:junit:4.12'

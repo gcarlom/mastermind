@@ -1,10 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<title>Mastermind Admin</title>
+	<title>Mastermind - Admin</title>
 	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet"
 		type="text/css" />
 
@@ -14,10 +15,9 @@
 	  and would get an 404 (not found) as response
 	 --%>
 
-	<%--  TODO remove this page ? (admin page controller) --%>
 	</head>
 	<body>
-		<h1 id="title">Mastermind Admin</h1>
+		<h1 class="logo">Mastermind Admin</h1>
 
 		<h2>Sessions:</h2>
 		<c:choose>
@@ -60,9 +60,14 @@
 			</c:otherwise>
 		</c:choose>
 
-		<p>
-			<a href="<c:url value="/session"/>">Refresh</a>
-		</p>
+		<form:form modelAttribute="sessionToken" action="sessions" autocomplete="off" method="post">
+			<%-- sessionId as hidden parameter: to simulate some sort of Single Sign On mechanism --%>
+			<form:input path="sessionId" type="hidden" />
+			<p>
+				<button>Refresh Sessions</button>
+			<p>
+		</form:form>
+
 		<jsp:include page="../fragments/footer.jsp"/>
 	</body>
 </html>

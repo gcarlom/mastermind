@@ -26,8 +26,7 @@
 		</p>
 		<hr/>
 		<p>
-		Admin page
-			<a href="<c:url value="/session"/>"> Play</a>
+			<a href="<c:url value="/admin"/>"> Log in</a>
 		</p>
 
 	<jsp:include page="./fragments/footer.jsp"/>

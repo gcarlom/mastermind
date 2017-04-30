@@ -1,1 +1,1 @@
-	<h1 id="title">Mastermind</h1>
+	<h1 id="title" class="logo">Mastermind</h1>
