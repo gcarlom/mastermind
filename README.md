@@ -15,7 +15,7 @@ A Web application using
 
 
 
-####Running / Testing the application locally
+#### Running / Testing the application locally
 
 Using Gradle 2.6
 ```
@@ -23,7 +23,7 @@ gradle jettyRun
 ```
 Deploys the application on localhost, start the server (jetty)
 
-   or 
+   or
 
 ```
 gradle jettyRunWar
@@ -43,5 +43,4 @@ To Generate the WAR file
 ```
 gradle war
 ```
-You will find the WAR file under the build/libs directory
-
+The WAR will be created into the build/libs directory
