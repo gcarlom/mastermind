@@ -1,0 +1,39 @@
+TODOs / IDEAS for the Game
+============================
+
+- Limit game session to a configurable number
+
+- Implement login to access admin page- 
+C:\Users\gc\workspace\mastermind\mastermind\TODO.txt
+Admin page: add params: may_session_number, cron job? - remove older / older inactive sessions 
+
+- User log in / set game parameters (no. of hole, max moves (difficulty), no of colors,
+      color codes as A..Z, 1..9, color char codes (R,G,B,..)
+  		params might be set per game or as default
+
+- FE:  show colors as letters encircled in colors or as SVG circles
+
+- FE: change interaction in  a way it's more mobile-friendly
+	- drag & drop?
+        - pick up colors
+
+- FE animation?
+
+- store the game-history and secret as encrypted in URL
+
+- store the game-history and secret + metainfo as date in which match was played, configuration as cookie 
+
+ - Use DB to store game sessions / user settings in DB
+
+- user login with default settings, saved matches
+
+- suggestions / reveal secret combination / reveal one color
+
+- implement real security for registered users
+
+- Add logging 
+
+- let registered user to change settings (colors, max no of moves, no of colors per move, color palette , display colors as letters/colors, etc)
+
+
+ 
