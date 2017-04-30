@@ -64,7 +64,7 @@
 						<form:errors path="move" cssClass="validation-error"/><br/>
 						<form:input path="move" type="text" autofocus="autofocus" autocomplete="off"/> <!-- bind to moveForm.move-->
 
-				<%-- Uncomment this if you prefer not to have sessionId in URL
+				<%-- Uncomment this if you prefer to have sessionId as hidden parameter instead of embedded in URL
 					<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
 				--%>
 						<button>Send my Move</button>

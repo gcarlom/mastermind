@@ -78,7 +78,7 @@ public class GameController {
     @RequestMapping(value = "/play", method = RequestMethod.POST)
     public String evaluateMove(@ModelAttribute("moveForm") MoveForm moveForm, BindingResult result,
             Model m) {
-        // NB @MovelAttribute actually store in  moveForm also request attributes in the query URL
+        // NB @ModelAttribute actually store in  moveForm also request attributes in the query URL
         //   if sessionId is sent via POST both as req. param in URL ?sessionId=1234 and as input files in the <FORM><input ..value="abcd">
         // then  moveForm.getSessionId() returns "1234,abcd" !!
         m.addAttribute("buildVersion", Constants.BUILD_VERSION + "(c)");
