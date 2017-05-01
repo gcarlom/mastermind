@@ -8,6 +8,6 @@ public class GlobalParameters {
 
     public static final int DEFAULT_COLOR_NO = 6;
 
-    public static final int MAX_SESSION_AGE_IN_MINUTES = 10;
+    public static final int MAX_SESSION_AGE_IN_MINUTES = 60;
 
 }

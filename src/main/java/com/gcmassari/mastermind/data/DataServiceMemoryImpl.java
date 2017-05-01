@@ -20,12 +20,12 @@ import com.gcmassari.mastermind.model.Sequence;
 public class DataServiceMemoryImpl implements DataService {
 	// TODO GC: add logging private static final Log LOG = new Log() {
 
-  // TODO GC: test the new ConcurrentHashMap<String, String>();
 	private static Map<String, History> histories = new ConcurrentHashMap<String, History>();
 	private static Map<String, Sequence> secretSequences = new ConcurrentHashMap<String, Sequence>();
 	private static Map<String, Date> sessionTimestamps = new ConcurrentHashMap<String, Date>();
 
-	public History getHistory(String sessionId) {
+	@Override
+    public History getHistory(String sessionId) {
 		if (sessionId == null) {
 			// TODO GC: Log.warn(), remove sysout and log this
 			System.out.println("WARNING: .getHistory(): move or seesionId invalid!");
@@ -35,7 +35,8 @@ public class DataServiceMemoryImpl implements DataService {
 		return histories.get(sessionId);
 	}
 
-	public History getHistoryAfterMove(Sequence move, String sessionId) {
+	@Override
+    public History getHistoryAfterMove(Sequence move, String sessionId) {
 		if ((move != null) && (sessionId != null)) {
 			// TODO GC: check if move & sessionId are Valid()!
 
@@ -52,15 +53,17 @@ public class DataServiceMemoryImpl implements DataService {
 		return null;
 	}
 
-	public Sequence getSecretSequence(String sessionId) {
+	@Override
+    public Sequence getSecretSequence(String sessionId) {
 		return secretSequences.get(sessionId);
 	}
 
 	@Override
 	public synchronized String getSessionIdForNewMatch() {
-	    if (tooManyActiveSessions()) {
-	        removeOlderSessions();
+	    if (moreSessionsThan(Constants.MAX_NUMBER_OF_GAMES)) {
+	        return null;
 	    }
+
 	    String newSessionId;
 	    do {
 	        newSessionId = createNewSessionId();
@@ -92,6 +95,7 @@ public class DataServiceMemoryImpl implements DataService {
 	}
 
 	private static String createNewSessionId() {
+	    // TODO GC: rewrite this method by introducing some element of randomness + checksum
 		return Long.toString(System.currentTimeMillis(), 16);
 
 	}
@@ -129,33 +133,42 @@ public class DataServiceMemoryImpl implements DataService {
         return res;
     }
 
+    @Override
+    public synchronized int removeOldestGameSessions(int noOfSessions) {
+        List<String> oldestSessions = getOldestSession(noOfSessions);
+        // TODO GC: remove sysout
+        System.out.println("--> ************ About removing sessions:"+ oldestSessions);
+        int noOfSessionToRemove = oldestSessions.size();
+        for (String sessionId : oldestSessions) {
+            removeSession(sessionId);
+        }
+        return noOfSessionToRemove;
+    }
+
+    @Override
+    public synchronized int removeGameSessionsOlderThan(Date givenDate) {
+        List<String> sessionsToRemove = getSessionsOlderThan(givenDate);
+        // TODO GC: remove sysout
+        // System.out.println("--> ************ About removing sessions:"+ sessionsToRemove);
+        int noOfSessionToRemove = sessionsToRemove.size();
+        for (String sessionId : sessionsToRemove) {
+            removeSession(sessionId);
+        }
+        return noOfSessionToRemove;
+    }
+
     private long getActiveSessionNumber() {
         return getSessionsIdAndSecretSequences().keySet().size();
     }
 
-    private void removeOlderSessions() {
-        if (tooManyActiveSessions()) {
-            removeOlderGameSessions(Constants.MAX_GAME_NUMBER-1);
-        }
+    private boolean moreSessionsThan(long noOfSessions) {
+        return (getActiveSessionNumber() > noOfSessions);
     }
 
-    private boolean tooManyActiveSessions() {
-        return (getActiveSessionNumber() > Constants.MAX_GAME_NUMBER);
-    }
-
-    private synchronized void removeOlderGameSessions(int noOfSessions) {
-        List<String> oldestSessions = getOlderSession(noOfSessions);
-        // TODO GC: remove sysout
-        System.out.println("--> ************ About removing sessions:"+ oldestSessions);
-        for (String sessionId : oldestSessions) {
-            removeSession(sessionId);
-        }
-    }
-
-    private List<String> getOlderSession(int noOfSession) {
+    private List<String> getOldestSession(int noOfSession) {
         List<Entry<String, Date>> sessionTimestampsList = new ArrayList<Entry<String, Date>>(sessionTimestamps.entrySet());
-        // TODO GC: remove sysout
-        System.out.println("--> 1. sessTSlist="+ sessionTimestampsList);
+        // TODO GC: remove commented sysout
+        // System.out.println("--> 1. sessTSlist="+ sessionTimestampsList);
         Collections.sort(sessionTimestampsList, new Comparator<Map.Entry<String, Date>>() {
             @Override
             public int compare(Entry<String, Date> o1, Entry<String, Date> o2) {
@@ -168,15 +181,35 @@ public class DataServiceMemoryImpl implements DataService {
                 return 0;
             }
         });
-        System.out.println("--> 2. sessTSlist="+ sessionTimestampsList);
-        System.out.printf("--> *** sessTSList.size=%d\n", sessionTimestampsList.size());
+        // TODO GC: remove commented sysout
+        // System.out.printf("--> *** sessTSList.size=%d\n", sessionTimestampsList.size());
         int listLength = Math.min(noOfSession, sessionTimestampsList.size());
 
         List<String> resultList = new ArrayList<String>();
         for (int i = 0; i < listLength; i++) {
             resultList.add(sessionTimestampsList.get(i).getKey());
         }
-        System.out.println("--> *** resList="+ resultList);
+        // TODO GC: remove commented sysout
+        // System.out.println("--> *** resList="+ resultList);
+        return resultList;
+    }
+
+    private List<String> getSessionsOlderThan(Date givenDate) {
+        if (givenDate == null) {
+            throw new IllegalArgumentException("Class " + this.getClass().getSimpleName() + ": parameter 'givenDate' may not be null");
+        }
+
+        List<Entry<String, Date>> sessionTimestampsList = new ArrayList<Entry<String, Date>>(sessionTimestamps.entrySet());
+
+        List<String> resultList = new ArrayList<String>();
+        for (int i = 0; i < sessionTimestampsList.size(); i++) {
+            Date ts = sessionTimestampsList.get(i).getValue();
+            if (ts == null || ts.before(givenDate)) {
+                resultList.add(sessionTimestampsList.get(i).getKey());
+            }
+        }
+        // TODO GC: remove commented sysout
+        // System.out.println("--> *** resList="+ resultList);
         return resultList;
     }
 

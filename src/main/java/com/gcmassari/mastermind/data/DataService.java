@@ -14,8 +14,6 @@ public interface DataService {
 	public History getHistoryAfterMove(Sequence move, String sessionId);
 
 	public String getSessionIdForNewMatch();
-	
-	public boolean removeSession(String sessionId);
 
 	public boolean isRegisteredPlay(String sessionId);
 
@@ -24,4 +22,10 @@ public interface DataService {
 	public Date getSessionTimestamp(String sessionId);
 
     public List<SessionInfo> getSessionInfo();
+
+    public boolean removeSession(String sessionId);
+
+    int removeGameSessionsOlderThan(Date givenDate);
+
+    int removeOldestGameSessions(int noOfSessions);
 }
