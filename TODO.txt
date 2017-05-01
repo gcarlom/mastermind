@@ -5,9 +5,11 @@ TODOs / IDEAS for the Game
 
 - Implement SSO
 
-- Impelemnt roles , isers from DB
+- Implement roles and Users storing them in a DB
 
-- Admin page: add params: may_session_number, cron job? - remove older / older inactive sessions 
+- Admin page: add params: max_session_number
+
+- Make cron job removing older sessions configurable
 
 - User log in / set game parameters (no. of hole, max moves (difficulty), no of colors,
       color codes as A..Z, 1..9, color char codes (R,G,B,..)
@@ -21,23 +23,19 @@ TODOs / IDEAS for the Game
 
 - FE animation?
 
-- store the game-history and secret as encrypted in URL
+-- Use DB to store game sessions / user settings in DB
 
-- store the game-history and secret + metainfo as date in which match was played, configuration as cookie 
-
- - Use DB to store game sessions / user settings in DB
-
-- user login with default settings, saved matches
+- User login can save / restore matches
+  - store the game-history and secret as encrypted in URL
+  - store the game-history and secret + metainfo as date in which match was played, configuration as cookie 
 
 - suggestions / reveal secret combination / reveal one color
 
-- implement real security for registered users
+- Implement real secure login for registered users
 
 - Add logging
 
-- let registered user to change settings (colors, max no of moves, no of colors per move, color palette , display colors as letters/colors, etc)
+- Let registered users change game settings (colors, max no of moves, no of colors per move, color palette , display colors as letters/colors, etc)
 
 - Admin can remove older/ selected sessions
-
-- Cron job which remove automatically (past) inactive session
 
