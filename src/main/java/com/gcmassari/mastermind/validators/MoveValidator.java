@@ -9,7 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.gcmassari.mastermind.data.GameParameters;
+import com.gcmassari.mastermind.data.GlobalParameters;
 import com.gcmassari.mastermind.model.Color;
 import com.gcmassari.mastermind.model.MoveForm;
 
@@ -23,6 +23,7 @@ public class MoveValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
+	    final int HOLES_NO = GlobalParameters.DEFAULT_HOLES_NO;
 		MoveForm moveForm = (MoveForm) target;
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "move", "play.move.isEmpty");
@@ -31,12 +32,12 @@ public class MoveValidator implements Validator {
 		}
 
 		String move = moveForm.getMove().trim();
-		if (move.length() != GameParameters.HOLES_NO) {
+		if (move.length() != HOLES_NO) {
 			errors.rejectValue(
 				"move",
 				"play.move.invalidLength",
-				new Object[]{Integer.valueOf(GameParameters.HOLES_NO)},
-				"Sequences should have " + GameParameters.HOLES_NO + " colors."
+				new Object[]{Integer.valueOf(HOLES_NO)},
+				"Sequences should have " + HOLES_NO + " colors."
 			);
 		}
 		List<Character> invalidChars = new ArrayList<Character>();

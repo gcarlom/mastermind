@@ -3,7 +3,7 @@ package com.gcmassari.mastermind.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import com.gcmassari.mastermind.data.GameParameters;
+import com.gcmassari.mastermind.data.GlobalParameters;
 
 public class Result {
 	private int black;
@@ -11,8 +11,8 @@ public class Result {
 
 
 	public Result(int black, int white) {
-		if (black < 0 || white < 0 || (black+white) > GameParameters.HOLES_NO) {
-			throw new IllegalArgumentException("Invalid argument: given parameters (black=" + black + "' white=" + white +") are not valid."); 
+		if (black < 0 || white < 0 || (black+white) > GlobalParameters.DEFAULT_HOLES_NO) {
+			throw new IllegalArgumentException("Invalid argument: given parameters (black=" + black + "' white=" + white +") are not valid.");
 		}
 		this.black = black;
 		this.white = white;
@@ -27,7 +27,7 @@ public class Result {
 
 	@Override
 	public String toString() {
-		return "[b=" + black + ", w="+ white + "]"; 
+		return "[b=" + black + ", w="+ white + "]";
 	}
 
 	@Override

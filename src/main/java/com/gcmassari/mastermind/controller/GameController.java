@@ -1,7 +1,6 @@
 package com.gcmassari.mastermind.controller;
 
-import static com.gcmassari.mastermind.data.GameParameters.HOLES_NO;
-import static com.gcmassari.mastermind.data.GameParameters.MAX_NO_MOVES;
+import static com.gcmassari.mastermind.data.GlobalParameters.DEFAULT_HOLES_NO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gcmassari.mastermind.data.Constants;
 import com.gcmassari.mastermind.data.DataService;
+import com.gcmassari.mastermind.data.GlobalParameters;
 import com.gcmassari.mastermind.data.History;
 import com.gcmassari.mastermind.model.MoveForm;
 import com.gcmassari.mastermind.model.Result;
@@ -23,13 +23,13 @@ import com.gcmassari.mastermind.validators.MoveValidator;
 @Controller
 public class GameController {
 
-    @Autowired // TODO GC: replace with (more standard) @Inject?
+    @Autowired
     private DataService dataService;
 
     @Autowired
     private MoveValidator moveValidator;
 
-    private static final Result SEQUENCE_FOUND = new Result(HOLES_NO, 0);
+    private static final Result SEQUENCE_FOUND = new Result(DEFAULT_HOLES_NO, 0);
 
     @RequestMapping({"/", "/home"})
     public String showHomePage(Model m) {
@@ -82,8 +82,8 @@ public class GameController {
         //   if sessionId is sent via POST both as req. param in URL ?sessionId=1234 and as input files in the <FORM><input ..value="abcd">
         // then  moveForm.getSessionId() returns "1234,abcd" !!
         m.addAttribute("buildVersion", Constants.BUILD_VERSION + "(c)");
-        
-        // Note: session id comes form the form, value eventually present in URL query <url>/?sessionId=xxx gets ignored 
+
+        // Note: session id comes form the form, value eventually present in URL query <url>/?sessionId=xxx gets ignored
         String sessionId = moveForm.getSessionId();
 
         if (!dataService.isRegisteredPlay(sessionId)) {
@@ -115,7 +115,7 @@ public class GameController {
         if (SEQUENCE_FOUND.equals(history.getLastMove().getResult())) {
             endOfTheGame = true;
             m.addAttribute("userWon", true);
-        } else if (history.getLength() >= MAX_NO_MOVES) {
+        } else if (history.getLength() >= GlobalParameters.MAX_NO_MOVES) {
             endOfTheGame = true;
             m.addAttribute("userWon", false);
             Sequence secretSequence = dataService.getSecretSequence(sessionId);

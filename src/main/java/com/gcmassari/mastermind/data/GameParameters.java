@@ -1,27 +1,12 @@
 package com.gcmassari.mastermind.data;
 
-// TODO GC: associate a game param instance to each game (session) id
-//  -> do to make it possible to have games with different params (no-holes, no-colors etc)
+// The idea is that Players may set different Game parameters for each match game session)
+// TODO GC: Make it possible to have games with different params (no-holes, no-colors etc)
 public class GameParameters {
-    public final static int MAX_NO_MOVES = 10;
 
-    public static final int HOLES_NO = 4;
+    private int holesNumber = GlobalParameters.DEFAULT_HOLES_NO;;
 
-    public static final int COLOR_NO = 6;
-
-    private int maxMovesNumber = MAX_NO_MOVES;
-
-    private int holesNumber = HOLES_NO;
-
-    private int colorNumber = COLOR_NO;
-
-    public int getMaxMovesNumber() {
-        return maxMovesNumber;
-    }
-
-    public void setMaxMovesNumber(int maxMovesNumber) {
-        this.maxMovesNumber = maxMovesNumber;
-    }
+    private int colorNumber = GlobalParameters.DEFAULT_COLOR_NO;
 
     public int getHolesNumber() {
         return holesNumber;

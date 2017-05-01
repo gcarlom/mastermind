@@ -2,20 +2,19 @@ package com.gcmassari.mastermind.model;
 
 import java.util.Random;
 
-import static com.gcmassari.mastermind.data.GameParameters.*;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import com.gcmassari.mastermind.model.Color;
+import com.gcmassari.mastermind.data.GlobalParameters;
 
 // TODO GC: consider to make Sequence<Parameters>
-// where params contain a list of Colors and the LENGTH (numbers of holes) 
+// where params contain a list of Colors and the LENGTH (numbers of holes)
 public class Sequence {
 	private static final Color[] COLORS = Color.values();
-	
+	private static final int HOLES_NO = GlobalParameters.DEFAULT_HOLES_NO;
+
 	private Color[] color = new Color[HOLES_NO];
-	
+
 	public Sequence(String seq) {
 		throwExceptionIfParameterIsInvalid(seq);
 		for (int i = 0; i < seq.length(); i++) {
@@ -38,21 +37,21 @@ public class Sequence {
 		}
 		return color[position];
 	}
-	
-	
+
+
 	public String getColorAtPos(int position) {
 	        if (position <0 || position >= HOLES_NO ) {
 	            throw new IllegalArgumentException("Position out of bound. Should be between 0 and " + (HOLES_NO-1) + ", was "+ position );
 	        }
-	        return color[position].name(); // returns the enum value exactly as defined : replace it with a pre-defined string so that enum field might ba defined w/o problems 
+	        return color[position].name(); // returns the enum value exactly as defined : replace it with a pre-defined string so that enum field might ba defined w/o problems
 	}
-	
+
 	public Result compareTo(Sequence other) {
 		int blacks = 0;
 		int whites = 0;
 		boolean toIgnore[] = new boolean[HOLES_NO];
 		boolean computedForWhites[] = new boolean[HOLES_NO];
-		// compute "blacks" 
+		// compute "blacks"
 		for (int i = 0; i < HOLES_NO; i++) {
 			if (color[i] == other.colorAt(i)) {
 				blacks++;
@@ -75,7 +74,7 @@ public class Sequence {
 				}
 			}
 		}
-		
+
 		return new Result(blacks, whites);
 	}
 
@@ -100,7 +99,7 @@ public class Sequence {
 			sb.append(color[i]);
 		}
 		return sb.toString();
-		
+
 	}
 
 	public String getAsString() {
@@ -112,12 +111,12 @@ public class Sequence {
 			throw new IllegalArgumentException("Invalid argument: given argument is null");
 		}
 		if (seq.length() != HOLES_NO) {
-			throw new IllegalArgumentException("Invalid argument: given parameter ('" + seq +"') should be "+ HOLES_NO + " characters long."); 
+			throw new IllegalArgumentException("Invalid argument: given parameter ('" + seq +"') should be "+ HOLES_NO + " characters long.");
 		}
 		for (int i = 0; i < seq.length(); i++) {
 			char letter = seq.charAt(i);
 			if  (Color.valueOf(letter) == null) {
-				throw new IllegalArgumentException("Invalid argument: given parameter ('" + seq +"') contains the illegal character: '"+ letter + "'."); 
+				throw new IllegalArgumentException("Invalid argument: given parameter ('" + seq +"') contains the illegal character: '"+ letter + "'.");
 			}
 		}
 		return;
@@ -127,18 +126,18 @@ public class Sequence {
 		ParsedSequenceString parsedString = parse(seqString);
 		return (parsedString.getSequence() != null);
 	}
-	
+
 	public static ParsedSequenceString parse(String seqString) {
 		if (seqString == null) {
 			return new ParsedSequenceString("Invalid argument: given argument is null");
 		}
 		if (seqString.length() != HOLES_NO) {
-			return new ParsedSequenceString("Invalid sequence: string ('" + seqString +"') must be "+ HOLES_NO + " characters long."); 
+			return new ParsedSequenceString("Invalid sequence: string ('" + seqString +"') must be "+ HOLES_NO + " characters long.");
 		}
 		for (int i = 0; i < seqString.length(); i++) {
 			char letter = seqString.charAt(i);
 			if  (Color.valueOf(letter) == null) {
-				return new ParsedSequenceString("Invalid argument: string ('" + seqString +"') contains the illegal character: '"+ letter + "'."); 
+				return new ParsedSequenceString("Invalid argument: string ('" + seqString +"') contains the illegal character: '"+ letter + "'.");
 			}
 		}
 		return new ParsedSequenceString(new Sequence(seqString));
