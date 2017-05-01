@@ -3,27 +3,27 @@ package com.gcmassari.mastermind.data;
 import java.nio.ByteBuffer;
 import java.util.zip.CRC32;
 
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.RandomUtils;
 
-public class Session {
-	String sessionId;
+public class Token {
+	String id;
 
-	public String getSessionId() {
-		return sessionId;
+	public String getId() {
+		return id;
 	}
 
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
     public boolean isValid() {
         // TODO GC to remove //System.out.println("--> sessionId="+ sessionId);
-        if (sessionId== null || sessionId.length() < 18 ) {
+        if (id == null || id.length() < 18 ) {
             return false;
         }
 
-        String[] s = sessionId.split("@");
+        String[] s = id.split("@");
 
         // TODO GC to remove //System.out.println("--> s[0]="+ s[0] + " (" + s[0].length());
         // TODO GC to remove //System.out.println("--> s[1]="+ s[1] + " (" + s[1].length());
@@ -47,19 +47,22 @@ public class Session {
     }
 
     // TODO GC: rewrite using a real secure algorithm (this is just for demo)
-    public static Session createNew() {
+    public static Token createNew() {
         byte[] randPart = RandomUtils.nextBytes(12);
         CRC32 crc = new CRC32();
         crc.update(randPart);
         long checkSum = crc.getValue();
         String rand = Base64.encodeBase64String(randPart);
-        // TODO GC to remove // System.out.println("--> createNew():  rand=" + "'" + rand + "'");
+        ///TODO GC to remove //
+        System.out.println("--> createNew():  rand=" + "'" + rand + "'");
         byte[] checkBytes = ByteBuffer.allocate(Long.SIZE / Byte.SIZE).putLong(checkSum).array();
         String checkSumAsBase64 = Base64.encodeBase64String(checkBytes);
-        // TODO GC to remove // System.out.println("--> createNew():  checkSum=" + checkSum + ",  checkSumAsBase64=" + "'" + checkSumAsBase64 + "'");
+        // TODO GC to remove //
+        System.out.println("--> createNew():  checkSum=" + checkSum + ",  checkSumAsBase64=" + "'" + checkSumAsBase64 + "'");
 
-        Session res = new Session();
-        res.setSessionId(rand + "@" + checkSumAsBase64);
+        Token res = new Token();
+        res.setId(rand + "@" + checkSumAsBase64);
+        System.out.println("--> created session token: "+ res.getId());
         return res;
     }
 

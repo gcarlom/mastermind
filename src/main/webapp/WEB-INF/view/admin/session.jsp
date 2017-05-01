@@ -62,7 +62,7 @@
 
 		<form:form modelAttribute="sessionToken" action="sessions" autocomplete="off" method="post">
 			<%-- sessionId as hidden parameter: to simulate some sort of Single Sign On mechanism --%>
-			<form:input path="sessionId" type="hidden" />
+			<form:input path="id" type="hidden" />
 			<p>
 				<button>Refresh Sessions</button>
 			<p>

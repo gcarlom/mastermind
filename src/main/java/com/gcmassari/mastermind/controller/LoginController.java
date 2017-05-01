@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.gcmassari.mastermind.data.Constants;
 import com.gcmassari.mastermind.data.DataService;
 import com.gcmassari.mastermind.data.LoginBean;
-import com.gcmassari.mastermind.data.Session;
+import com.gcmassari.mastermind.data.Token;
 
 @Controller
 public class LoginController {
@@ -31,8 +31,8 @@ public class LoginController {
         StringBuilder logInErrorMessage =  new StringBuilder();
         if (areUserAndPasswordCorrect(loginBean, logInErrorMessage)) {
                 m.addAttribute("buildVersion", Constants.BUILD_VERSION);
-                Session session = Session.createNew();
-                m.addAttribute("sessionToken", session);
+                Token token = Token.createNew();
+                m.addAttribute("sessionToken", token);
 
                 m.addAttribute("sessionInfo", dataService.getSessionInfo());
                 return "admin/session";

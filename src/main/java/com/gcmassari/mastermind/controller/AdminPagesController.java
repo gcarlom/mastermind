@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gcmassari.mastermind.data.Constants;
 import com.gcmassari.mastermind.data.DataService;
-import com.gcmassari.mastermind.data.Session;
+import com.gcmassari.mastermind.data.Token;
 
 // TODO GC: Add login to access to this page, add commands to remove (last) xxx sessions (cron job params)?
 
@@ -19,16 +19,14 @@ public class AdminPagesController {
 	@Autowired
 	private DataService dataService;
 
-// TODO GC: add control for removing older sessions
     @RequestMapping(value = "/sessions", method = RequestMethod.POST)
-	public String showSessionsToRegisteredUsers(@ModelAttribute("sessionToken") Session session, /*BindingResult result,*/ Model m) {
+	public String showSessionsToRegisteredUsers(@ModelAttribute("sessionToken") Token sessionToken, Model m) {
 		m.addAttribute("buildVersion", Constants.BUILD_VERSION);
-		if (session.isValid()) {
-		    m.addAttribute("sessionToken", Session.createNew());
+		if (sessionToken.isValid()) {
+		    m.addAttribute("sessionToken", Token.createNew());
 		    m.addAttribute("sessionInfo", dataService.getSessionInfo());
 		    return "admin/session";
 		}
-
 		return "error";
 	}
 
