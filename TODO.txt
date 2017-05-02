@@ -1,6 +1,20 @@
 TODOs / IDEAS for the Game
 ============================
 
+- Retrieve admin psw + build version  from property files
+
+- Use Getty, java7, try to deploy on server
+
+- Use Spring security to protect access to some pages with  user/psw
+
+- Improve FE: align color balls
+
+- FE: center content
+
+- Improve FE: Make entering moves more intuitive (clicking on color pools? drag and drop?)
+
+- Improve FE: display white / black sticks instead of [b=1,w=2]
+
 - Limit game session to a configurable number
 
 - Implement SSO
@@ -38,4 +52,6 @@ TODOs / IDEAS for the Game
 - Let registered users change game settings (colors, max no of moves, no of colors per move, color palette , display colors as letters/colors, etc)
 
 - Admin can remove older/ selected sessions
+
+- Integrate checksum into GameID ?
 
