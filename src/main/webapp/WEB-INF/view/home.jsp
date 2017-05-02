@@ -14,7 +14,7 @@
 
 	</head>
 		<body>
-		<h1 id="title">Welcome to Mastermind !</h1>
+		<h1 class="logo">Welcome to Mastermind !</h1>
 
 		<p>
 			<a href="<c:url value="/play"/>"> Start a new game</a>
