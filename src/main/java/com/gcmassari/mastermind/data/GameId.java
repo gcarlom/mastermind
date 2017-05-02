@@ -10,7 +10,7 @@ import org.apache.commons.lang3.RandomUtils;
 public class GameId {
 
     /**
-     * @return a new GameId represented in Base64 in the url-safe format (that is containing no "+", "/" characters)
+     * @return a new GameId represented in Base64 as URL-safe format (that is containing no "+", "/" characters)
      *
      * GameId is 12 Bytes long which means its Base64 representation is 16 chars long
      */

@@ -18,15 +18,12 @@ public class Token {
 	}
 
     public boolean isValid() {
-        // TODO GC to remove //System.out.println("--> sessionId="+ sessionId);
         if (id == null || id.length() < 18 ) {
             return false;
         }
 
         String[] s = id.split("@");
 
-        // TODO GC to remove //System.out.println("--> s[0]="+ s[0] + " (" + s[0].length());
-        // TODO GC to remove //System.out.println("--> s[1]="+ s[1] + " (" + s[1].length());
         if (s.length != 2 || s[0].length() < 16 || s[1].length() < 12) {
             return false;
         }
@@ -34,7 +31,6 @@ public class Token {
         CRC32 calcCrc = new CRC32();
         calcCrc.update(randPart);
         long calcCheckSum = calcCrc.getValue();
-        // TODO GC to remove //System.out.println("--> isValid(): calc. CRC =" + calcCheckSum);
 
         byte[] txCrcAsBytes = Base64.decodeBase64(s[1]);
 
@@ -42,7 +38,6 @@ public class Token {
         buff.flip();
         long txCrc = buff.getLong();
 
-        // TODO GC to remove // System.out.println("--> isValid(): (converted) transm. CRC =" + txCrc);
         return (calcCheckSum == txCrc);
     }
 
@@ -53,16 +48,11 @@ public class Token {
         crc.update(randPart);
         long checkSum = crc.getValue();
         String rand = Base64.encodeBase64String(randPart);
-        ///TODO GC to remove //
-        System.out.println("--> createNew():  rand=" + "'" + rand + "'");
         byte[] checkBytes = ByteBuffer.allocate(Long.SIZE / Byte.SIZE).putLong(checkSum).array();
         String checkSumAsBase64 = Base64.encodeBase64String(checkBytes);
-        // TODO GC to remove //
-        System.out.println("--> createNew():  checkSum=" + checkSum + ",  checkSumAsBase64=" + "'" + checkSumAsBase64 + "'");
 
         Token res = new Token();
         res.setId(rand + "@" + checkSumAsBase64);
-        System.out.println("--> created session token: "+ res.getId());
         return res;
     }
 

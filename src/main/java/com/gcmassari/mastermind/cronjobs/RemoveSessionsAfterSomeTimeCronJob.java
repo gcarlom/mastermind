@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 
 import com.gcmassari.mastermind.data.DataService;
 import com.gcmassari.mastermind.data.GlobalParameters;
-// TODO GC if no cron job is needed: remove this class and package
+
 @Component
 public class RemoveSessionsAfterSomeTimeCronJob {
 
     static {
-        System.out.println("--> RemoveSessionsAfterSomeTimeCronJob: cron job executed every 10 min."); // Each 10 min <-> "*/4 * * * * ?"
+        // TODO GC remove sysout, log this information
+        System.out.println("RemoveSessionsAfterSomeTimeCronJob: cron job executed every 10 min."); // Each 10 min <-> "*/4 * * * * ?"
     }
 
     @Autowired
@@ -21,7 +22,6 @@ public class RemoveSessionsAfterSomeTimeCronJob {
 
     @Scheduled(cron="0 */10 * * * ?") // every 10 minutes
     public void removeOldSessions() {
-//        Date now = new Date();
         DateTime now = new DateTime();
         DateTime date = now.minusMinutes(GlobalParameters.MAX_SESSION_AGE_IN_MINUTES);
         dataService.removeGameSessionsOlderThan(date.toDate());

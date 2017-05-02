@@ -47,7 +47,7 @@ public class DataServiceMemoryImpl implements DataService {
 			history.add(latestRound);
 			return history;
 		}
-		// if move or sessionId is invalid
+		// if move or gameId is invalid
 		// TODO GC: Log.warn(), remove sysout
 		System.out.println("WARNING: .getHistory(): move or sessionId invalid!");
 		return null;
@@ -130,8 +130,6 @@ public class DataServiceMemoryImpl implements DataService {
     @Override
     public synchronized int removeOldestGameSessions(int noOfSessions) {
         List<String> oldestSessions = getOldestSession(noOfSessions);
-        // TODO GC: remove sysout
-        System.out.println("--> ************ About removing sessions:"+ oldestSessions);
         int noOfSessionToRemove = oldestSessions.size();
         for (String sessionId : oldestSessions) {
             removeSession(sessionId);
@@ -142,8 +140,6 @@ public class DataServiceMemoryImpl implements DataService {
     @Override
     public synchronized int removeGameSessionsOlderThan(Date givenDate) {
         List<String> sessionsToRemove = getSessionsOlderThan(givenDate);
-        // TODO GC: remove sysout
-        // System.out.println("--> ************ About removing sessions:"+ sessionsToRemove);
         int noOfSessionToRemove = sessionsToRemove.size();
         for (String sessionId : sessionsToRemove) {
             removeSession(sessionId);
@@ -161,8 +157,6 @@ public class DataServiceMemoryImpl implements DataService {
 
     private List<String> getOldestSession(int noOfSession) {
         List<Entry<String, Date>> sessionTimestampsList = new ArrayList<Entry<String, Date>>(sessionTimestamps.entrySet());
-        // TODO GC: remove commented sysout
-        // System.out.println("--> 1. sessTSlist="+ sessionTimestampsList);
         Collections.sort(sessionTimestampsList, new Comparator<Map.Entry<String, Date>>() {
             @Override
             public int compare(Entry<String, Date> o1, Entry<String, Date> o2) {
@@ -175,16 +169,12 @@ public class DataServiceMemoryImpl implements DataService {
                 return 0;
             }
         });
-        // TODO GC: remove commented sysout
-        // System.out.printf("--> *** sessTSList.size=%d\n", sessionTimestampsList.size());
         int listLength = Math.min(noOfSession, sessionTimestampsList.size());
 
         List<String> resultList = new ArrayList<String>();
         for (int i = 0; i < listLength; i++) {
             resultList.add(sessionTimestampsList.get(i).getKey());
         }
-        // TODO GC: remove commented sysout
-        // System.out.println("--> *** resList="+ resultList);
         return resultList;
     }
 
@@ -202,8 +192,6 @@ public class DataServiceMemoryImpl implements DataService {
                 resultList.add(sessionTimestampsList.get(i).getKey());
             }
         }
-        // TODO GC: remove commented sysout
-        // System.out.println("--> *** resList="+ resultList);
         return resultList;
     }
 
