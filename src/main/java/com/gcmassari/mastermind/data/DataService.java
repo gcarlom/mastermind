@@ -13,7 +13,7 @@ public interface DataService {
 
 	public History getHistoryAfterMove(Sequence move, String sessionId);
 
-	public String getSessionIdForNewMatch();
+	public String startNewGame();
 
 	public boolean isRegisteredPlay(String sessionId);
 

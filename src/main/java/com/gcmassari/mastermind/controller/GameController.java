@@ -41,7 +41,7 @@ public class GameController {
     public String showMoveForm(Model m) {
         m.addAttribute("buildVersion", Constants.BUILD_VERSION);
 
-        String sessionId = dataService.getSessionIdForNewMatch();
+        String sessionId = dataService.startNewGame();
         if (sessionId == null) {
             m.addAttribute("errorMessage", "Can't create new game session.");
             return "error";

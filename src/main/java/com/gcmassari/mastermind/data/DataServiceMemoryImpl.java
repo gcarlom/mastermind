@@ -59,21 +59,21 @@ public class DataServiceMemoryImpl implements DataService {
 	}
 
 	@Override
-	public synchronized String getSessionIdForNewMatch() {
+	public synchronized String startNewGame() {
 	    if (moreSessionsThan(Constants.MAX_NUMBER_OF_GAMES)) {
 	        return null;
 	    }
 
-	    String newSessionId;
+	    String newGameId;
 	    do {
-	        newSessionId = createNewSessionId();
-	    } while (secretSequences.containsKey(newSessionId));
+	        newGameId = GameId.createNew();
+	    } while (secretSequences.containsKey(newGameId));
 
 	    Sequence newSecretSequence = Sequence.random();
-	    secretSequences.put(newSessionId, newSecretSequence);
-	    histories.put(newSessionId, new History());
-	    sessionTimestamps.put(newSessionId, new Date());
-	    return newSessionId;
+	    secretSequences.put(newGameId, newSecretSequence);
+	    histories.put(newGameId, new History());
+	    sessionTimestamps.put(newGameId, new Date());
+	    return newGameId;
 	}
 
     @Override
@@ -92,12 +92,6 @@ public class DataServiceMemoryImpl implements DataService {
 			res.put(sessionAndSequence.getKey(), sessionAndSequence.getValue().toString());
 		}
 		return res;
-	}
-
-	private static String createNewSessionId() {
-	    // TODO GC: rewrite this method by introducing some element of randomness + checksum
-		return Long.toString(System.currentTimeMillis(), 16);
-
 	}
 
 	/**
