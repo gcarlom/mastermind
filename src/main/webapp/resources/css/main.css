@@ -1,7 +1,25 @@
 @import url(//fonts.googleapis.com/css?family=Caveat);
 
+root {
+	box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
+}
+
 body {
 	color:black;
+	background-color: #fffff;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.container { /* double container pattern */
+	max-width: 380px;
+	margin: auto;
+	border: thin;
 }
 
 .logo {
@@ -15,16 +33,39 @@ div#history-area {
 	margin-bottom: 2em;
 }
 
-div#history-area td#round-result{
+div.history-row {
+    display: inline-table;
+}
+
+#history-area .round-result {
 	font-size: 0.8em;
 	padding-left: 0.5em;
 }
 
 
-div#history-area td#round-index {
+#history-area .round-index {
 	color: gray;
+    min-width: 2.0em;
+    text-align: right;
+    padding-right: 0.8em;
 }
 
+.history-table {
+    display: table;
+    width: 100%;
+    border-spacing: 0.25em 0.2em;
+    background-color: #eee;
+}
+
+.cell {
+    display: table-cell;
+    background-color: antiquewhite;
+    min-width: 1.1em;
+}
+
+.cell.color {
+	border-radius: 3em;
+}
 #move-area input.sequence {
   font-size: 1.2em;
   width: 0.7em;
@@ -125,10 +166,11 @@ span.color {
     border-color: black;
     border-width: 1px;
     border-style: solid;
-    padding-left: 0.1em;
-    padding-right: 0.1em;
+    padding-left: 0.05em;
+    padding-right: 0.05em;
     margin-left:0.1em;
-    margin-right: 0.1em
+    margin-right: 0.1em;
+    text-align: center;
 }
 
 span.color-A {

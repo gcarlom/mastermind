@@ -11,9 +11,10 @@
 </head>
 
 <body>
+	<div class="container">
+
 	<jsp:include page="./fragments/header.jsp" />
 
-	<div>
 		<c:choose>
 			<c:when test="${not empty history}">
 				No. of moves so far: &nbsp;
@@ -31,24 +32,30 @@
 
 		<c:if test="${not empty history}">
 			<div id="history-area">
-				<table id="history-table">
+				<div class="history-table" id="history-table">
 					<c:forEach items="${history.rounds}" var="round" varStatus="counter">
-						<tr>
-							<td id="round-index">${counter.count}.&nbsp;</td>
-							<td id="round-sequence">
-<%-- 							<td id="round-sequence">${round.sequence}</td> --%>
-							<c:set var="sequence"  value="${round.sequence.asString}"/>
-							<c:forEach var="i" begin="0" end="${fn:length(sequence)-1}" step="1">
-							<c:set var="color"  value="${fn:substring(sequence, i, i+1)}"/>
-								<span class="color color-${color}">
-									<c:out value="${color}" />
-								</span>
-							</c:forEach>
-							</td>
-							<td id="round-result">${round.result}</td>
-						</tr>
+						<div class="history-row">
+							<span class="cell round-index">
+								${counter.count}.&nbsp;
+							</span>
+							<%--  Sequence --%>
+							<span id="round-sequence">
+								<c:set var="sequence"  value="${round.sequence.asString}"/>
+								<c:forEach var="i" begin="0" end="${fn:length(sequence)-1}" step="1">
+								<c:set var="color"  value="${fn:substring(sequence, i, i+1)}"/>
+									<span class="cell color color-${color}">
+										<c:out value="${color}" />
+									</span>
+								</c:forEach>
+							</span>
+
+							<%-- result (black/white pegs) --%>
+							<span class="cell round-result">
+								${round.result}
+							</span>
+						</div>
 					</c:forEach>
-				</table>
+				</div>
 			</div>
 		</c:if>
 
@@ -89,8 +96,7 @@
 				</c:otherwise>
 			</c:choose>
 
-
 	</div>
-	<jsp:include page="./fragments/footer.jsp"/>
+	<jsp:include page="./fragments/footer.jsp" />
 </body>
 </html>
