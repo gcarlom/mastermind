@@ -74,7 +74,7 @@
 				<%-- Uncomment this if you prefer to have sessionId as hidden parameter instead of embedded in URL
 					<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
 				--%>
-						<button>Send my Move</button>
+						<button class="send-move">Send my Move</button>
 					</form:form>
 				</c:when>
 

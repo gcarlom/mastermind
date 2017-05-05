@@ -59,7 +59,7 @@ div.history-row {
 
 .cell {
     display: table-cell;
-    background-color: antiquewhite;
+    background-color: #eee;
     min-width: 1.1em;
 }
 
@@ -110,6 +110,10 @@ div.sequence-area {
 #move-area input#pos-4 {
   background-color: black;
   color: white;
+}
+
+button.send-move {
+	    margin: 2em 0em 4em 0em;
 }
 
 footer {
