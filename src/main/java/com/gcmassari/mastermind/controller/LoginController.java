@@ -42,6 +42,17 @@ public class LoginController {
         }
     }
 
+    @RequestMapping(value = "/secret**", method = RequestMethod.GET)
+    public String adminPage(Model model) {
+        model.addAttribute("title", "Spring Security Hello World");
+        model.addAttribute("message", "This is protected page!");
+
+        return "admin/secret";
+    }
+
+
+
+    // Utility methods
     private boolean areUserAndPasswordCorrect(LoginBean login, StringBuilder error) {
         if (login == null || StringUtils.isEmpty(login.getUserName()) || StringUtils.isEmpty(login.getPassword())) {
             error.replace(0, error.length(), "Please enter User and Password");

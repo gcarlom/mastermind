@@ -14,9 +14,13 @@ targetCompatibility = 1.6
 war.archiveName "mastermind.war"
 
 dependencies {
-   providedCompile 'javax.servlet:servlet-api:2.5'
-   
-   compile 'org.springframework:spring-webmvc:3.2.2.RELEASE'
+	ext.springSecurityVersion = '3.2.3.RELEASE'
+	ext.springVersion = '3.2.8.RELEASE'
+
+	providedCompile 'javax.servlet:servlet-api:2.5'
+	compile "org.springframework:spring-webmvc:${springVersion}"
+   compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
+   compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
    compile 'org.apache.commons:commons-lang3:3.5'
    compile 'commons-codec:commons-codec:1.9'
    compile 'joda-time:joda-time:2.9.9'
