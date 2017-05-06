@@ -1,15 +1,19 @@
 TODOs / IDEAS for the Game
 ============================
 
+- Use Spring security to protect access to some pages with  user/psw + use the custom  login page
+
 - Retrieve admin psw + build version  from property files
 
 - Use Getty, java7, try to deploy on server
 
-- Use Spring security to protect access to some pages with  user/psw
+- Add a button to copy the current game as URL into clipboard (eg: http://localhost:8080/mastermind/play?sessionId=AAABW8s6hy-W9Zgk)
 
 - Improve FE: align color balls
 
 - FE: center content
+
+- Add copyright to mastermind producer (Invicta?)
 
 - Improve FE: Make entering moves more intuitive (clicking on color pools? drag and drop?)
 
@@ -23,7 +27,7 @@ TODOs / IDEAS for the Game
 
 - Admin page: add params: max_session_number
 
-- Make cron job removing older sessions configurable
+- Make cron job which removes old sessions configurable i.e. how often it runs, how many session it removes
 
 - User log in / set game parameters (no. of hole, max moves (difficulty), no of colors,
       color codes as A..Z, 1..9, color char codes (R,G,B,..)
