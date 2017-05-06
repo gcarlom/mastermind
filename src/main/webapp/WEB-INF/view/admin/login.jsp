@@ -8,10 +8,15 @@
 		<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
-	<body>
+	<body onload='document.loginForm.userName.focus();'>
 		<jsp:include page="../fragments/header.jsp" />
-		<form:form name="submitForm" method="POST">
+		<c:url var='actionUrl'  value='/perform_login' />
+		<%-- default if nor redefined in spring-security.xml: login-processing-url would be j_spring_security_check' --%>
+		<form:form name="loginForm" action="${actionUrl}" method="POST">
 			<div align="center">
+				<div class="error">${error}</div>
+				<div class="message">${msg}</div>
+
 				<table>
 					<tr>
 						<td class="login">User</td>
@@ -28,11 +33,14 @@
 					<tr>
 						<td></td>
 						<td>
-							<button class="login">Login</button>
+							<button class="login" name="submit" value="submit">Login</button>
 						</td>
 					</tr>
 				</table>
-				<div style="color: red">${error}</div>
+				<%-- TODO enable this or remove it:
+				 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				 --%>
+
 			</div>
 		</form:form>
 

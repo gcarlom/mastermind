@@ -1,7 +1,11 @@
 TODOs / IDEAS for the Game
 ============================
 
-- Use Spring security to protect access to some pages with  user/psw + use the custom  login page
+- Implelent CSRF in the used Spring security
+
+- ? Do not write passort in clear: Use SHA of them
+
+- FE: Make the "Update" link in session page look like a button usin CSS
 
 - Retrieve admin psw + build version  from property files
 
@@ -9,7 +13,6 @@ TODOs / IDEAS for the Game
 
 - Add a button to copy the current game as URL into clipboard (eg: http://localhost:8080/mastermind/play?sessionId=AAABW8s6hy-W9Zgk)
 
-- Improve FE: align color balls
 
 - FE: center content
 
@@ -59,3 +62,4 @@ TODOs / IDEAS for the Game
 
 - Integrate checksum into GameID ?
 
+- Rename query parameter URL sessionId -> gameId

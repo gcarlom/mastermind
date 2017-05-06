@@ -66,6 +66,7 @@ div.history-row {
 .cell.color {
 	border-radius: 3em;
 }
+
 #move-area input.sequence {
   font-size: 1.2em;
   width: 0.7em;
@@ -79,11 +80,7 @@ form.sequence-area  {
   display: inline;
 }
 
-/*
-div.sequence-area {
-  background-color: brown;
-  display: inline;
-}
+
 */
 
 /* TODO GC: remove #move-area or re-introduce a div with this id */
@@ -143,6 +140,21 @@ button.login {
     margin-left: 5.5em;
     margin-top: 0.8em;
     background-color: #eaeaea;
+}
+
+.message, .error {
+    margin-left: 11em;
+    margin-bottom: 0.9em;
+    font-size: 1.0em;
+    font-style: italic;
+}
+
+.message {
+    color: #9090e0;
+}
+
+.error {
+    color: red;
 }
 
 .validation-error {

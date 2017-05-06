@@ -1,6 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<%@page session="true"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -18,6 +20,10 @@
 	</head>
 	<body>
 		<h1 class="logo">Mastermind Admin</h1>
+
+		<c:if test="${pageContext.request.userPrincipal.name != null}">
+			<h4>Logged in as: ${pageContext.request.userPrincipal.name}</h4>
+		</c:if>
 
 		<h2>Sessions:</h2>
 		<c:choose>
@@ -60,14 +66,17 @@
 			</c:otherwise>
 		</c:choose>
 
-		<form:form modelAttribute="sessionToken" action="sessions" autocomplete="off" method="post">
+		<form:form modelAttribute="sessionToken" action="sessions" autocomplete="off" method="GET">
 			<%-- sessionId as hidden parameter: to simulate some sort of Single Sign On mechanism --%>
-			<form:input path="id" type="hidden" />
+			<!-- form:input path="id" type="hidden" / -->
 			<p>
-				<button>Refresh Sessions</button>
+				<button>Update</button>
 			<p>
 		</form:form>
-
-		<jsp:include page="../fragments/footer.jsp"/>
+		<a href="sessions"> Update again</a>
+		<p> <%-- TODO GC to fix: should return to login page not to "/"   --%>
+			<a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+		</p>
+	<jsp:include page="../fragments/footer.jsp"/>
 	</body>
 </html>

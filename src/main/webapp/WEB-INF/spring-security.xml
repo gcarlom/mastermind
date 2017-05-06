@@ -7,15 +7,31 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<http auto-config="true">
-		<intercept-url pattern="/secret**" access="ROLE_USER" />
+		<intercept-url pattern="/sessions" access="ROLE_USER" />
+		<!-- Settings:
+				- login-processing-url: overrides default URL /j_spring_security_check
+				- always-use-default-target="false": after successful login user is redirected
+					to the URL he/she entered (before being redirected to login page specified in login-page
+		-->
+		<form-login
+			login-page="/login"
+			login-processing-url="/perform_login"
+			default-target-url="/sessions"
+			always-use-default-target="false"
+			authentication-failure-url="/login?error"
+			username-parameter="userName"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" />
+		<!-- TODO GC enable CSRF protection -->
+		<!-- csrf /  -->
 	</http>
 
 	<authentication-manager>
-	  <authentication-provider>
-	    <user-service>
-		<user name="admin" password="12345" authorities="ROLE_USER" />
-	    </user-service>
-	  </authentication-provider>
+		<authentication-provider>
+			<user-service>
+				<user name="admin" password="12345" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
 	</authentication-manager>
 
 </beans:beans>
