@@ -11,7 +11,7 @@ public class SessionInfo {
     private Sequence secret;
     private History history;
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss.SSS");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 
     public SessionInfo(String sessionId, Date timestamp, Sequence secret, History history) {
         this.sessionId = sessionId;
