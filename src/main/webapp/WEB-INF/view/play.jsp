@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -31,9 +33,10 @@
 		<br />
 
 		<c:if test="${not empty history}">
-			<div id="history-area">
+			<div id="history-area" class="history-area">
 				<div class="history-table" id="history-table">
 					<c:forEach items="${history.rounds}" var="round" varStatus="counter">
+						<%--ROW BEGIN --%>
 						<div class="history-row">
 							<span class="cell round-index">
 								${counter.count}.&nbsp;
@@ -49,11 +52,29 @@
 								</c:forEach>
 							</span>
 
-							<%-- result (black/white pegs) --%>
+							<%-- result.asSymbol is a list of strings representing black/white pegs --%>
+							<c:set var="resultList"  value="${round.result.asSymbol}"/>
 							<span class="cell round-result">
-								${round.result}
+								<c:forEach items="${resultList}" var="resultPeg">
+									<c:choose>
+										<c:when test="${resultPeg == 'X'}">
+											<c:set var="pegClass"  value="peg-black" />
+											<%--  cross product (U-2A2F) --%>
+											<c:set var="pegSymbol"  value="&#x2a2f;" />
+										</c:when>
+										<c:when test="${resultPeg == 'O'}">
+											<c:set var="pegClass"  value="peg-white" />
+											<c:set var="pegSymbol"  value="o" />
+										</c:when>
+									</c:choose>
+									<span class="peg ${pegClass}">
+										${pegSymbol}
+									</span>
+								</c:forEach>
 							</span>
+
 						</div>
+						<%--ROW END --%>
 					</c:forEach>
 				</div>
 			</div>

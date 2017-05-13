@@ -17,7 +17,7 @@ body {
 }
 
 .container { /* double container pattern */
-	max-width: 380px;
+	max-width: 400px;
 	margin: auto;
 	border: thin;
 }
@@ -28,43 +28,79 @@ body {
 	font-family: 'Caveat', sans-serif;
 }
 
-div#history-area {
+div.history-area {
 	font-size: 1.5em;
 	margin-bottom: 2em;
 }
 
-div.history-row {
-    display: inline-table;
-}
-
-#history-area .round-result {
+.history-area .round-result {
 	font-size: 0.8em;
-	padding-left: 0.5em;
+	padding-left: 1.2em;
 }
 
-
-#history-area .round-index {
+.history-area .round-index {
 	color: gray;
-    min-width: 2.0em;
-    text-align: right;
-    padding-right: 0.8em;
+	min-width: 2.0em;
+	text-align: right;
+	/*padding-right: 0.8em;*/
 }
 
 .history-table {
-    display: table;
-    width: 100%;
-    border-spacing: 0.25em 0.2em;
-    background-color: #eee;
+	display: table;
+	width: 100%;
+	border-spacing: 0.25em 0.2em;
+	background-color: #eee;
+}
+
+div.history-row {
+	display: inline-table;
+	width: 100%;
 }
 
 .cell {
-    display: table-cell;
-    background-color: #eee;
-    min-width: 1.1em;
+	display: table-cell;
+	background-color: #eee;
+	min-width: 1.1em;
+	/* TODO GC
+	-- remove debug style from here
+	border-color: gray;
+	border-width: thin;
+	border-style: solid;
+	-- remove till here*/
+}
+
+.cell.round-index {
+	width: 15%;
+}
+
+.cell.round-result {
+	width: 33%;
+	font-size: 0.8em;
 }
 
 .cell.color {
 	border-radius: 3em;
+}
+
+.peg {
+	font-size: 0.8em;
+	min-width: 1.2em;
+	display: inline-block;
+	text-align: center;
+	border-width: thin;
+	border-radius: 4em;
+	border-color: black;
+	border-style: solid;
+}
+
+.peg-black {
+	background-color:black;
+	color: black;
+}
+
+.peg-white {
+	background-color:white;
+	color:white
 }
 
 #move-area input.sequence {
@@ -110,17 +146,17 @@ form.sequence-area  {
 }
 
 button.send-move {
-	    margin: 2em 0em 4em 0em;
+		margin: 2em 0em 4em 0em;
 }
 
 footer {
 	margin-top: 3em;
-    padding: 1em;
-    clear: left;
-    text-align: center;
+	padding: 1em;
+	clear: left;
+	text-align: center;
 	font-size: 0.75em;
-    color: black;
-    background-color: whitesmoke;
+	color: black;
+	background-color: whitesmoke;
 }
 
 .login {
@@ -128,33 +164,33 @@ footer {
 }
 
 input.login {
-    margin-left: 1em;
-    border-radius: 0.15em;
-    border-color: lightgray;
-    border-width: thin;
-    background-color: #f9f9f9;
+	margin-left: 1em;
+	border-radius: 0.15em;
+	border-color: lightgray;
+	border-width: thin;
+	background-color: #f9f9f9;
 }
 
 button.login {
-    border-radius: 0.15em;
-    margin-left: 5.5em;
-    margin-top: 0.8em;
-    background-color: #eaeaea;
+	border-radius: 0.15em;
+	margin-left: 5.5em;
+	margin-top: 0.8em;
+	background-color: #eaeaea;
 }
 
 .message, .error {
-    margin-left: 11em;
-    margin-bottom: 0.9em;
-    font-size: 1.0em;
-    font-style: italic;
+	margin-left: 11em;
+	margin-bottom: 0.9em;
+	font-size: 1.0em;
+	font-style: italic;
 }
 
 .message {
-    color: #9090e0;
+	color: #9090e0;
 }
 
 .error {
-    color: red;
+	color: red;
 }
 
 .validation-error {
@@ -168,25 +204,25 @@ input#move {
 }
 
 span.validation-error ~ input#move {
-    background-color: #f8dd5f;
+	background-color: #f8dd5f;
 }
 
 table.session-info, table.session-info th, table.session-info td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
 }
 
 span.color {
-    border-radius: 1.1em;
-    border-color: black;
-    border-width: 1px;
-    border-style: solid;
-    padding-left: 0.05em;
-    padding-right: 0.05em;
-    margin-left:0.1em;
-    margin-right: 0.1em;
-    text-align: center;
+	border-radius: 1.1em;
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+	padding-left: 0.05em;
+	padding-right: 0.05em;
+	margin-left:0.1em;
+	margin-right: 0.1em;
+	text-align: center;
 }
 
 span.color-A {
