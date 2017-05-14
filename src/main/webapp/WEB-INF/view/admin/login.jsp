@@ -39,9 +39,7 @@
 						</td>
 					</tr>
 				</table>
-				<%-- TODO enable this or remove it:
-				 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				 --%>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 			</div>
 		</form:form>

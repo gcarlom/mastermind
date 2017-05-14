@@ -22,8 +22,9 @@
 			username-parameter="userName"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout" />
+
 		<!-- TODO GC enable CSRF protection -->
-		<!-- csrf /  -->
+		<csrf />
 	</http>
 
 	<authentication-manager>
