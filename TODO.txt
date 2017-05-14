@@ -1,18 +1,17 @@
 TODOs / IDEAS for the Game
 ============================
 
-- Implelent CSRF in the used Spring security
+- Check CSRF implementation get rid of nasty error messages when no correct CSRF is found
 
-- ? Do not write passort in clear: Use SHA of them
+- Do not write password in clear: Use SHA of them
 
-- FE: Make the "Update" link in session page look like a button usin CSS
+- FE: Make the "Update" link in session page look like a button using CSS
 
 - Retrieve admin psw + build version  from property files
 
 - Use Getty, java7, try to deploy on server
 
 - Add a button to copy the current game as URL into clipboard (eg: http://localhost:8080/mastermind/play?sessionId=AAABW8s6hy-W9Zgk)
-
 
 - FE: center content
 
@@ -22,7 +21,9 @@ TODOs / IDEAS for the Game
 
 - Improve FE: display white / black sticks instead of [b=1,w=2]
 
-- Limit game session to a configurable number
+- Make game configurable:
+     max no of moves, no of colors , which colors, duplicated colors (yes/no)
+     display colors with/wo letters, choose letter to associate with colors, pegs with/without characters
 
 - Implement SSO
 
@@ -40,9 +41,14 @@ TODOs / IDEAS for the Game
 
 - FE: change interaction in  a way it's more mobile-friendly
 	- drag & drop?
-        - pick up colors
+    - click on a color in color pool= select it & click on hole=put selected color there
+    - click/touch on a hole open a context manu where you can choose the color
+
+- FE possibility to add (unknown "?" as note) + link notes to holes
 
 - FE animation?
+
+- FE Make application usable for mobile devices
 
 -- Use DB to store game sessions / user settings in DB
 
