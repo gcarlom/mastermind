@@ -112,7 +112,7 @@
 						</c:otherwise>
 					</c:choose>
 					<p>
-						<a href="<c:url value="/play"/>">Play again</a>
+						<a class="button-link" href="<c:url value="/play"/>">Play again</a>
 					</p>
 				</c:otherwise>
 			</c:choose>

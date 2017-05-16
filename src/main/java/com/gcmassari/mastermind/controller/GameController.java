@@ -44,7 +44,7 @@ public class GameController {
         String sessionId = dataService.startNewGame();
         if (sessionId == null) {
             m.addAttribute("errorMessage", "Can't create new game session.");
-            return "error";
+            return "error"; // TODO GC: go to a "Sorry" page
         }
 
         MoveForm moveForm = new MoveForm();

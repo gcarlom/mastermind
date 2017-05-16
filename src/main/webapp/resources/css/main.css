@@ -117,8 +117,6 @@ form.sequence-area  {
 }
 
 
-*/
-
 /* TODO GC: remove #move-area or re-introduce a div with this id */
 /* TODO GC: remove those lines if more needed (in case you display the color in another way not as single input text fields */
 #move-area input#pos-1 {
@@ -147,6 +145,19 @@ form.sequence-area  {
 
 button.send-move {
 		margin: 2em 0em 4em 0em;
+		display: block;
+		padding: 0.5em;
+		background-color: #0090c9;
+		text-align: center;
+}
+
+.button-link {
+	display: block;
+	padding: 0.5em;
+	color: #fff;
+	background-color: #0090c9;
+	text-align: center;
+	text-decoration: none;
 }
 
 footer {

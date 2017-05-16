@@ -21,9 +21,10 @@
 			authentication-failure-url="/login?error"
 			username-parameter="userName"
 			password-parameter="password" />
+
 		<logout logout-success-url="/login?logout" />
 
-		<!-- TODO GC enable CSRF protection -->
+		<!-- Enable CSRF protection -->
 		<csrf />
 	</http>
 

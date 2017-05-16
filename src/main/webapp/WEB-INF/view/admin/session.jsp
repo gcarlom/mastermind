@@ -69,8 +69,9 @@
 		</c:choose>
 
 		<a href="sessions"> Update</a>
+		<a class="button-link" href="sessions">Update</a>
 		<p>
-			<a href="<c:url value="/login?logout" />" >Logout</a>
+			<a class="button-link" href="<c:url value="/login?logout" />" >Logout</a>
 		</p>
 	<jsp:include page="../fragments/footer.jsp"/>
 	</body>
