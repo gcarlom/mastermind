@@ -68,9 +68,9 @@
 			</c:otherwise>
 		</c:choose>
 
-		<a href="sessions"> Update again</a>
-		<p> <%-- TODO GC to fix: should return to login page not to "/"   --%>
-			<a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+		<a href="sessions"> Update</a>
+		<p>
+			<a href="<c:url value="/login?logout" />" >Logout</a>
 		</p>
 	<jsp:include page="../fragments/footer.jsp"/>
 	</body>
