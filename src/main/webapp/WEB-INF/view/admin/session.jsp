@@ -68,13 +68,6 @@
 			</c:otherwise>
 		</c:choose>
 
-		<form:form modelAttribute="sessionToken" action="sessions" autocomplete="off" method="GET">
-			<%-- sessionId as hidden parameter: to simulate some sort of Single Sign On mechanism --%>
-			<!-- form:input path="id" type="hidden" / -->
-			<p>
-				<button>Update</button>
-			<p>
-		</form:form>
 		<a href="sessions"> Update again</a>
 		<p> <%-- TODO GC to fix: should return to login page not to "/"   --%>
 			<a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
