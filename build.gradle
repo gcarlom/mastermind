@@ -4,7 +4,7 @@ apply plugin: 'jetty'
 apply plugin: 'eclipse-wtp'
 
 repositories {
-   mavenCentral()
+	mavenCentral()
 }
 
 // Use Java 6 for server compatibility
@@ -19,31 +19,31 @@ dependencies {
 
 	providedCompile 'javax.servlet:servlet-api:2.5'
 	compile "org.springframework:spring-webmvc:${springVersion}"
-   compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
-   compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
-   compile 'org.apache.commons:commons-lang3:3.5'
-   compile 'commons-codec:commons-codec:1.9'
-   compile 'joda-time:joda-time:2.9.9'
+	compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
+	compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
+	compile 'org.apache.commons:commons-lang3:3.5'
+	compile 'commons-codec:commons-codec:1.9'
+	compile 'joda-time:joda-time:2.9.9'
 
-   /* Needed to use JSTL core (c:tags, <%@ taglib uri="http://java.sun.com/jsp/jstl/core"..) with Tomcat 7.0.x: adds the standard-1.1.2.jar to the WAR file*/
-   compile 'taglibs:standard:1.1.2'
+	/* Needed to use JSTL core (c:tags, <%@ taglib uri="http://java.sun.com/jsp/jstl/core"..) with Tomcat 7.0.x: adds the standard-1.1.2.jar to the WAR file*/
+	compile 'taglibs:standard:1.1.2'
 
-   runtime 'javax.servlet:jstl:1.1.2'
+	runtime 'javax.servlet:jstl:1.1.2'
 
-   /* for JUnit tests */
-   testCompile 'junit:junit:4.12'
+	/* for JUnit tests */
+	testCompile 'junit:junit:4.12'
 }
 
 /* Change context path (base url). otherwise defaults to name of project */
 //jettyRunWar.contextPath = ''
 
 jettyRun {
-    reload = "automatic"
-    scanIntervalSeconds = 1
+	reload = "automatic"
+	scanIntervalSeconds = 1
  }
 
 // [GC]: Added this lines to let spring boot run with tomcat 7.0 - otherwise you get an unsupported version (java7)
 ext['tomcat.version'] = '7.0.59'
-  dependencies {
-      compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
+	dependencies {
+		compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
 }
