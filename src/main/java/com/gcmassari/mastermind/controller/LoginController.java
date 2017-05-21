@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gcmassari.mastermind.data.Constants;
 import com.gcmassari.mastermind.data.DataService;
+import com.gcmassari.mastermind.data.GlobalParameters;
 
 @Controller
 public class LoginController {
@@ -39,6 +40,8 @@ public class LoginController {
     @RequestMapping(value = "/sessions", method = RequestMethod.GET)
     public String adminPage(Model m) {
         m.addAttribute("buildVersion", Constants.BUILD_VERSION);
+        m.addAttribute("maxNumberOfGames", GlobalParameters.getMaxNoOfSessions());
+        m.addAttribute("maxSessionAgeInMinutes", GlobalParameters.getMaxSessionAgeInMinutes());
 
         m.addAttribute("sessionInfo", dataService.getSessionInfo());
         return "admin/session";

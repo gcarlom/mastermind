@@ -28,6 +28,13 @@
 		</c:if>
 
 		<h2>Sessions:</h2>
+		<p>
+				Max. number of sessions: <c:out value="${maxNumberOfGames}"/>
+		</p>
+		<p>
+				Max. Session age (min): <c:out value="${maxSessionAgeInMinutes}"/>
+		</p>
+
 		<c:choose>
 			<c:when test="${empty sessionInfo}">
 				No session
