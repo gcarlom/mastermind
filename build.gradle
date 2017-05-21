@@ -1,15 +1,26 @@
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'war'
-apply plugin: 'jetty'
+apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
+
+apply plugin: 'org.akhikhl.gretty'
 
 repositories {
 	mavenCentral()
+	jcenter() // for gretty plugin
 }
 
-// Use Java 6 for server compatibility
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+mainClassName = ''
+
+// Use Java 7
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+jar {
+    baseName = 'mastermind'
+    version =  '0.2.0'
+}
 
 war.archiveName "mastermind.war"
 
@@ -32,18 +43,32 @@ dependencies {
 
 	/* for JUnit tests */
 	testCompile 'junit:junit:4.12'
+	testCompile "org.hamcrest:hamcrest-all:1.3"
 }
 
-/* Change context path (base url). otherwise defaults to name of project */
-//jettyRunWar.contextPath = ''
+//Gretty Embedded Jetty
+buildscript {
+	repositories {
+		jcenter()
+	}
 
-jettyRun {
-	reload = "automatic"
-	scanIntervalSeconds = 1
- }
-
-// [GC]: Added this lines to let spring boot run with tomcat 7.0 - otherwise you get an unsupported version (java7)
-ext['tomcat.version'] = '7.0.59'
 	dependencies {
-		compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
+		classpath 'org.akhikhl.gretty:gretty:1.4.0'  // latest version on 2017-01
+	}
+}
+
+// Using gretty
+//   Jetty8 does not support non-jar WebApplicationInitializer scanning, even it's a servlet 3.0+ container.
+//   This will cause "No Spring WebApplicationInitializer types detected on classpath"
+gretty {
+	port = 8080
+	contextPath = 'mastermind'
+	servletContainer = 'jetty9' //tomcat7 or tomcat8
+}
+
+// [GC] This lines let Spring Boot to run with tomcat 7.0 - otherwise you get an unsupported version (java7)
+ext['tomcat.version'] = '7.0.59'
+
+dependencies {
+	compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
 }
