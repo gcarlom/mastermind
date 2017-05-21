@@ -81,7 +81,7 @@ public class GameController {
         // NB @ModelAttribute actually store in  moveForm also request attributes in the query URL
         //   if sessionId is sent via POST both as req. param in URL ?sessionId=1234 and as input files in the <FORM><input ..value="abcd">
         // then  moveForm.getSessionId() returns "1234,abcd" !!
-        m.addAttribute("buildVersion", Constants.BUILD_VERSION + "(c)");
+        m.addAttribute("buildVersion", Constants.BUILD_VERSION);
 
         // Note: session id comes form the form, value eventually present in URL query <url>/?sessionId=xxx gets ignored
         String sessionId = moveForm.getSessionId();
