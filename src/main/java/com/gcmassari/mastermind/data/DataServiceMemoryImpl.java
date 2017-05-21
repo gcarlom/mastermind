@@ -60,7 +60,7 @@ public class DataServiceMemoryImpl implements DataService {
 
 	@Override
 	public synchronized String startNewGame() {
-	    if (moreSessionsThan(Constants.MAX_NUMBER_OF_GAMES)) {
+	    if (moreSessionsThan(GlobalParameters.DEFAULT_MAX_NUMBER_OF_GAMES)) {
 	        return null;
 	    }
 

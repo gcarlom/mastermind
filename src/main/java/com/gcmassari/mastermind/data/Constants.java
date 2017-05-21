@@ -7,5 +7,4 @@ public class Constants {
 
     public static final String BUILD_DATE = "2017-03-30";
 
-    public static final int MAX_NUMBER_OF_GAMES = 100;
 }
