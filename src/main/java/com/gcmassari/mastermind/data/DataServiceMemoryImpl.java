@@ -60,7 +60,7 @@ public class DataServiceMemoryImpl implements DataService {
 
 	@Override
 	public synchronized String startNewGame() {
-	    if (moreSessionsThan(GlobalParameters.DEFAULT_MAX_NUMBER_OF_GAMES)) {
+	    if (maxNumberOfSessionsReached()) {
 	        return null;
 	    }
 
@@ -151,8 +151,8 @@ public class DataServiceMemoryImpl implements DataService {
         return getSessionsIdAndSecretSequences().keySet().size();
     }
 
-    private boolean moreSessionsThan(long noOfSessions) {
-        return (getActiveSessionNumber() > noOfSessions);
+    private boolean maxNumberOfSessionsReached() {
+        return (getActiveSessionNumber() >= GlobalParameters.getMaxNoOfSessions());
     }
 
     private List<String> getOldestSession(int noOfSession) {

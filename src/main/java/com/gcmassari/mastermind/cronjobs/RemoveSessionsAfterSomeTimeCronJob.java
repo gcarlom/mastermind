@@ -23,7 +23,7 @@ public class RemoveSessionsAfterSomeTimeCronJob {
     @Scheduled(cron="0 */10 * * * ?") // every 10 minutes
     public void removeOldSessions() {
         DateTime now = new DateTime();
-        DateTime date = now.minusMinutes(GlobalParameters.MAX_SESSION_AGE_IN_MINUTES);
+        DateTime date = now.minusMinutes(GlobalParameters.DEFAULT_MAX_SESSION_AGE_IN_MINUTES);
         dataService.removeGameSessionsOlderThan(date.toDate());
     }
 }

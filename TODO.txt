@@ -1,9 +1,9 @@
 TODOs / IDEAS for the Game
 ============================
 
-Session page: admin may change the maxNoOfGames, MaxDurationSession
-
 Add tag on black/white pegs explaining what do they mean
+
+In session page: make sessionID a clickable link which opens the corresponding game (in new window)
 
 - Check CSRF implementation get rid of nasty error messages when no correct CSRF is found
 
@@ -28,8 +28,6 @@ Add rules/how to play
 - Implement SSO
 
 - Implement roles and Users storing them in a DB
-
-- Admin page: add params: max_session_number
 
 - Make cron job which removes old sessions configurable i.e. how often it runs, how many session it removes
 

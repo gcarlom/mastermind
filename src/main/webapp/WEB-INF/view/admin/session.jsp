@@ -28,21 +28,28 @@
 		</c:if>
 
 		<h2>Sessions:</h2>
-		<p>
-				Max. number of sessions: <c:out value="${maxNumberOfGames}"/>
-		</p>
-		<p>
-				Max. Session age (min): <c:out value="${maxSessionAgeInMinutes}"/>
-		</p>
+		<form action="sessions" method="POST">
+			<p>
+				Max. number of sessions: <input type="text" value="${maxNoOfSessions}" name="maxNoOfSessions" class="sessionParam"/>
+			</p>
+			<p>
+				Max. Session age (min): <input  type="text" value="${maxSessionAgeInMinutes}" name="maxSessionAgeInMinutes" class="sessionParam"/>
+			</p>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<button>Save</button>
+		</form>
 
 		<c:choose>
 			<c:when test="${empty sessionInfo}">
-				No session
+				<p>No session</p>
 			</c:when>
 
 			<c:otherwise>
 				<p>
-				Active game sessions: <c:out value="${fn:length(sessionInfo)}"></c:out>
+					Active game sessions: <c:out value="${fn:length(sessionInfo)}"></c:out>
+					<c:if test="${maxNoOfSessionReached}">
+						<span class="warning">(Max number of session reached)</span>
+					</c:if>
 				</p>
 				<table class='session-info'>
 					<tr>
@@ -51,6 +58,7 @@
 						<th>Game Id</th>
 						<th>Secret</th>
 						<th>No. of moves</th>
+						<th>Link to the game</th>
 					</tr>
 					<c:forEach var="sessionInfo" items="${sessionInfo}" varStatus="counter">
 						<tr>
@@ -68,6 +76,9 @@
 							</td>
 							<td>
 								<c:out value="${sessionInfo.numberOfMoves}" />
+							</td>
+							<td>
+								<a href="<c:url value ='/play?sessionId=${sessionInfo.sessionId}'/>" target="_blank" >link</a>
 							</td>
 						</tr>
 					</c:forEach>

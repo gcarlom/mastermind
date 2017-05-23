@@ -8,13 +8,13 @@ public class GlobalParameters {
 
     public static final int DEFAULT_COLOR_NO = 6;
 
-    public static final int MAX_SESSION_AGE_IN_MINUTES = 60;
+    public static final int DEFAULT_MAX_SESSION_AGE_IN_MINUTES = 60;
 
-    public static final int DEFAULT_MAX_NUMBER_OF_GAMES = 100;
+    public static final int DEFAULT_MAX_NUMBER_OF_SESSIONS = 100;
 
-    private static int maxNoOfSessions = DEFAULT_MAX_NUMBER_OF_GAMES;
+    private static int maxNoOfSessions = DEFAULT_MAX_NUMBER_OF_SESSIONS;
 
-    private static int maxSessionAgeInMinutes = MAX_SESSION_AGE_IN_MINUTES;
+    private static int maxSessionAgeInMinutes = DEFAULT_MAX_SESSION_AGE_IN_MINUTES;
 
     public static synchronized int getMaxNoOfSessions() {
         return maxNoOfSessions;

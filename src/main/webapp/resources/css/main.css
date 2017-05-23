@@ -209,6 +209,12 @@ button.login {
 	color: red;
 }
 
+span.warning {
+	margin-left: 2em;
+	font-style: italic;
+	color: red;
+}
+
 .validation-error {
 	font-size: 0.9em;
 	color: red;
