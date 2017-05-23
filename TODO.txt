@@ -1,25 +1,25 @@
 TODOs / IDEAS for the Game
 ============================
 
+Session page: admin may change the maxNoOfGames, MaxDurationSession
+
+Add tag on black/white pegs explaining what do they mean
+
 - Check CSRF implementation get rid of nasty error messages when no correct CSRF is found
 
 - Do not write password in clear: Use SHA of them
 
-- FE: Make the "Update" link in session page look like a button using CSS
-
-- Retrieve admin psw + build version  from property files
-
-- Use Getty, java7, try to deploy on server
+- Retrieve admin psw + build version from property files
 
 - Add a button to copy the current game as URL into clipboard (eg: http://localhost:8080/mastermind/play?sessionId=AAABW8s6hy-W9Zgk)
 
-- FE: center content
-
 - Add copyright to mastermind producer (Invicta?)
 
-- Improve FE: Make entering moves more intuitive (clicking on color pools? drag and drop?)
+Add mastermind history
 
-- Improve FE: display white / black sticks instead of [b=1,w=2]
+Add rules/how to play
+
+- Improve FE: Make entering moves more intuitive (clicking on color pools? drag and drop?)
 
 - Make game configurable:
      max no of moves, no of colors , which colors, duplicated colors (yes/no)
