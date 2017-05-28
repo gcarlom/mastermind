@@ -10,6 +10,9 @@
 <title>Mastermind</title>
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet"
 	type="text/css" />
+	<%-- use defer to execute the script just before the event DOMContentLoaded gets fired (=(DOM loaded ,
+	 images and CSS not yet loaded/applied. Alternative put script just before the closure body tag --%>
+ <script defer src="<c:url value="/resources/js/main.js" />"></script>
 </head>
 
 <body>
@@ -17,24 +20,20 @@
 
 	<jsp:include page="./fragments/header.jsp" />
 
-		<c:choose>
-			<c:when test="${not empty history}">
-				No. of moves so far: &nbsp;
-				<c:out value="${history.length}" />
-			</c:when>
-			<c:otherwise>
-				New game
-			</c:otherwise>
-		</c:choose>
-		<br /> Session ID: &nbsp;
-		<c:out value="${moveForm.sessionId}" />
+		<c:if test="${empty history}">
+				<p>New game</p>
+		</c:if>
+
+		<br />
+		<a href = "<c:url value = "/play?sessionId=${moveForm.sessionId}"/>">link to this game</a>
 		<br />
 		<br />
 		<br />
 
-		<c:if test="${not empty history}">
-			<div id="history-area" class="history-area">
-				<div class="history-table" id="history-table">
+		<%-- PAST MOVES (history) start --%>
+		<div class="history-area">
+			<div class="history-table" id="history-table">
+				<c:if test="${not empty history}">
 					<c:forEach items="${history.rounds}" var="round" varStatus="counter">
 						<%--ROW BEGIN --%>
 						<div class="history-row">
@@ -42,7 +41,7 @@
 								${counter.count}.&nbsp;
 							</span>
 							<%--  Sequence --%>
-							<span id="round-sequence">
+							<span class="round-sequence">
 								<c:set var="sequence"  value="${round.sequence.asString}"/>
 								<c:forEach var="i" begin="0" end="${fn:length(sequence)-1}" step="1">
 								<c:set var="color"  value="${fn:substring(sequence, i, i+1)}"/>
@@ -76,9 +75,36 @@
 						</div>
 						<%--ROW END --%>
 					</c:forEach>
+				</c:if>
+		<%-- PAST MOVES (history) end --%>
+
+		<%-- NEXT MOVE start --%>
+				<div class="history-row">
+					<span class="cell round-index">&nbsp;</span>
+					<span id="next-move" class="round-sequence">
+						<span id="pos-1" data-pos="1" data-color="" class="cell color color-empty selected">&nbsp;</span>
+						<c:forEach var="i" begin="2" end="${positionsNo}" step="1">
+							<span id="pos-${i}"data-pos="${i}" data-color="" class="cell color color-empty">
+								&nbsp;
+							</span>
+						</c:forEach>
+					</span>
+					<span class="cell round-result">&nbsp;</span>
 				</div>
 			</div>
-		</c:if>
+		</div>
+		<%-- NEXT MOVE end --%>
+
+	<%--  COLOR SET start--%>
+	<div id="color-area" class="color-area">
+		<c:forEach var="i" begin="0" end="${fn:length(colors)-1}" step="1">
+			<c:set var="color"  value="${fn:substring(colors, i, i+1)}"/>
+			<span data-color="${color}" class="color color-${color}">
+				<c:out value="${color}" />
+			</span>
+		</c:forEach>
+	</div>
+	<%--  COLOR SET end--%>
 
 			<c:url value="/play" var="formAction" >
 				<%-- Comment following line if you prefer not to have sessionId in URL --%>
@@ -90,7 +116,8 @@
 				<%-- Game is not over yet: get next move --%>
 					<form:form modelAttribute="moveForm" action="${formAction}" cssStyle="sequence-area" autocomplete="off" method="post">
 						<form:errors path="move" cssClass="validation-error"/><br/>
-						<form:input path="move" type="text" autofocus="autofocus" autocomplete="off"/> <!-- bind to moveForm.move-->
+<%-- 						<form:input path="move" type="text" autofocus="autofocus" autocomplete="off"/> <!-- bind to moveForm.move--> --%>
+						<form:input path="move" type="text" autocomplete="off" value=""/> <!-- bind to moveForm.move-->
 
 				<%-- Uncomment this if you prefer to have sessionId as hidden parameter instead of embedded in URL
 					<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->

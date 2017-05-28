@@ -278,3 +278,82 @@ span.color-F {
 	background-color: black;
 	color: white;
 }
+
+span.color-empty {
+	background-color: #eee;
+	border-color: white;
+	border-width: thin;
+}
+
+/*
+span.color-empty.selected {
+	background-color: #ccc;
+	border-width: thin;
+}
+*/
+
+span.color.selected {
+	border-color: #504949;
+	/*border-radius: 0.2em;*/
+	position: relative;
+}
+
+/*
+span.color.selected:after {
+    content: "X";
+    width: 30px;
+    height: 30px;
+    background:yellow url("http://www.gentleface.com/i/free_toolbar_icons_16x16_black.png") no-repeat -30px -50px fixed;
+    top: 100px;
+    right: 50px;
+    position: absolute;
+}
+*/
+
+/*
+span.color.selected:after {
+    content: "_";
+    color: rgba(255, 255, 255, 0.0);
+    text-align: center;
+    font-size: 1.5em;
+    border-bottom: 2px;
+    background-color: rgba(255, 214, 15, 0.67);
+    width: 1.2em;
+    top: -0.20em;
+    left: -0.17em;
+    position: absolute;
+    border-radius: 3em;
+}
+*/
+
+span.color.selected:after {
+    content: "_";
+    color: rgba(255, 0, 255, 0.0);
+    text-align: center;
+    font-size: 1.2em;
+    border-bottom: 2px;
+    background-color: rgba(255, 255, 255, 00);
+    width: 1.1em;
+    top: -6px;
+    left: -1px;
+    position: absolute;
+    border-width: 3px 0px 3px 0px;
+    border-color: #504949;
+    border-style: solid;
+}
+
+div.color-area {
+	font-size: 1.5em;
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+div.color-area span.color {
+	min-width: 1.1em;
+	display: inline-block;
+}
+
+div.color-area span.color + span.color {
+	margin-left: 0.25em;
+	margin-right: 0.25em;
+}
