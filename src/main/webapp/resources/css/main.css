@@ -42,7 +42,6 @@ div.history-area {
 	color: gray;
 	min-width: 2.0em;
 	text-align: right;
-	/*padding-right: 0.8em;*/
 }
 
 .history-table {
@@ -213,6 +212,12 @@ span.warning {
 	margin-left: 2em;
 	font-style: italic;
 	color: red;
+}
+
+.link-to-game a {
+	text-decoration: none;
+	font-weight: bold;
+	color: inherit;
 }
 
 .validation-error {
