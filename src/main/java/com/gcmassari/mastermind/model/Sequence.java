@@ -11,7 +11,7 @@ import com.gcmassari.mastermind.data.GlobalParameters;
 // where params contain a list of Colors and the LENGTH (numbers of holes)
 public class Sequence {
 	private static final Color[] COLORS = Color.values();
-	private static final int HOLES_NO = GlobalParameters.DEFAULT_HOLES_NO;
+	private static final int HOLES_NO = GlobalParameters.DEFAULT_POSITION_NO;
 
 	private Color[] color = new Color[HOLES_NO];
 

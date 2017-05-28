@@ -23,7 +23,7 @@ public class MoveValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-	    final int HOLES_NO = GlobalParameters.DEFAULT_HOLES_NO;
+	    final int HOLES_NO = GlobalParameters.DEFAULT_POSITION_NO;
 		MoveForm moveForm = (MoveForm) target;
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "move", "play.move.isEmpty");

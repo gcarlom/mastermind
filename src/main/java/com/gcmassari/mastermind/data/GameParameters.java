@@ -4,24 +4,24 @@ package com.gcmassari.mastermind.data;
 // TODO GC: Make it possible to have games with different params (no-holes, no-colors etc)
 public class GameParameters {
 
-    private int holesNumber = GlobalParameters.DEFAULT_HOLES_NO;;
+    private static int positionNumber = GlobalParameters.DEFAULT_POSITION_NO;
 
-    private int colorNumber = GlobalParameters.DEFAULT_COLOR_NO;
+    private static String colors = "ABCDEF";
 
-    public int getHolesNumber() {
-        return holesNumber;
+    public static int getPositionNumber() {
+        return positionNumber;
     }
 
-    public void setHolesNumber(int holesNumber) {
-        this.holesNumber = holesNumber;
+    public static void setPositionNumber(int positionNumber) {
+        GameParameters.positionNumber = positionNumber;
     }
 
-    public int getColorNumber() {
-        return colorNumber;
+    public static String getColors() {
+        return colors;
     }
 
-    public void setColorNumber(int colorNumber) {
-        this.colorNumber = colorNumber;
+    public static void setColors(String colors) {
+        GameParameters.colors = colors;
     }
 
 }

@@ -15,7 +15,7 @@ public class Result {
 	private int white;
 
 	public Result(int black, int white) {
-		if (black < 0 || white < 0 || (black+white) > GlobalParameters.DEFAULT_HOLES_NO) {
+		if (black < 0 || white < 0 || (black+white) > GlobalParameters.DEFAULT_POSITION_NO) {
 			throw new IllegalArgumentException("Invalid argument: given parameters (black=" + black + "' white=" + white +") are not valid.");
 		}
 		this.black = black;

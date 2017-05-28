@@ -1,6 +1,6 @@
 package com.gcmassari.mastermind.controller;
 
-import static com.gcmassari.mastermind.data.GlobalParameters.DEFAULT_HOLES_NO;
+import static com.gcmassari.mastermind.data.GlobalParameters.DEFAULT_POSITION_NO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gcmassari.mastermind.data.Constants;
 import com.gcmassari.mastermind.data.DataService;
+import com.gcmassari.mastermind.data.GameParameters;
 import com.gcmassari.mastermind.data.GlobalParameters;
 import com.gcmassari.mastermind.data.History;
 import com.gcmassari.mastermind.model.MoveForm;
@@ -29,7 +30,7 @@ public class GameController {
     @Autowired
     private MoveValidator moveValidator;
 
-    private static final Result SEQUENCE_FOUND = new Result(DEFAULT_HOLES_NO, 0);
+    private static final Result SEQUENCE_FOUND = new Result(DEFAULT_POSITION_NO, 0);
 
     @RequestMapping({"/", "/home"})
     public String showHomePage(Model m) {
@@ -47,6 +48,7 @@ public class GameController {
             return "error"; // TODO GC: go to a "Sorry" page
         }
 
+        addGameAttributesToModel(m);
         MoveForm moveForm = new MoveForm();
         moveForm.setSessionId(sessionId);
         m.addAttribute("moveForm", moveForm);
@@ -64,6 +66,7 @@ public class GameController {
             return "error";
         }
 
+        addGameAttributesToModel(m);
         History history = dataService.getHistory(sessionId);
 
         MoveForm nextMoveForm = new MoveForm();
@@ -73,7 +76,6 @@ public class GameController {
 
         return "play";
     }
-
 
     @RequestMapping(value = "/play", method = RequestMethod.POST)
     public String evaluateMove(@ModelAttribute("moveForm") MoveForm moveForm, BindingResult result,
@@ -91,6 +93,7 @@ public class GameController {
             return "error";
         }
 
+        addGameAttributesToModel(m);
         // Validate the move, store eventual validation errors in result
         moveValidator.validate(moveForm, result);
 
@@ -129,4 +132,9 @@ public class GameController {
         return "play";
     }
 
+
+    private void addGameAttributesToModel(Model m) {
+        m.addAttribute("positionsNo", GameParameters.getPositionNumber());
+        m.addAttribute("colors", GameParameters.getColors());
+    }
 }
