@@ -8,11 +8,14 @@
 <html>
 <head>
 <title>Mastermind</title>
-<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet"
-	type="text/css" />
-	<%-- use defer to execute the script just before the event DOMContentLoaded gets fired (=(DOM loaded ,
-	 images and CSS not yet loaded/applied. Alternative put script just before the closure body tag --%>
- <script defer src="<c:url value="/resources/js/main.js" />"></script>
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" type="text/css" />
+
+	<%--  do not include script to enter next move if game is over and there is no next move to enter  --%>
+	<c:if test="${not endOfGame}">
+			<%-- use defer to execute the script just before the event DOMContentLoaded gets fired (=(DOM loaded ,
+				images and CSS not yet loaded/applied. Alternative put script just before the closure body tag --%>
+		<script defer src="<c:url value="/resources/js/main.js" />"></script>
+	</c:if>
 </head>
 
 <body>
