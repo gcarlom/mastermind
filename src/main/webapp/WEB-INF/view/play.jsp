@@ -30,9 +30,10 @@
 		<br />
 		<br />
 
-		<%-- PAST MOVES (history) start --%>
 		<div class="history-area">
 			<div class="history-table" id="history-table">
+
+				<%-- PAST MOVES (history) start --%>
 				<c:if test="${not empty history}">
 					<c:forEach items="${history.rounds}" var="round" varStatus="counter">
 						<%--ROW BEGIN --%>
@@ -76,73 +77,76 @@
 						<%--ROW END --%>
 					</c:forEach>
 				</c:if>
-		<%-- PAST MOVES (history) end --%>
+				<%-- PAST MOVES (history) end --%>
 
-		<%-- NEXT MOVE start --%>
-				<div class="history-row">
-					<span class="cell round-index">&nbsp;</span>
-					<span id="next-move" class="round-sequence">
-						<span id="pos-1" data-pos="1" data-color="" class="cell color color-empty selected">&nbsp;</span>
-						<c:forEach var="i" begin="2" end="${positionsNo}" step="1">
-							<span id="pos-${i}"data-pos="${i}" data-color="" class="cell color color-empty">
-								&nbsp;
-							</span>
-						</c:forEach>
-					</span>
-					<span class="cell round-result">&nbsp;</span>
-				</div>
+				<%-- NEXT MOVE start --%>
+				<c:if test="${not endOfGame}">
+					<div class="history-row">
+						<span class="cell round-index">&nbsp;</span>
+						<span id="next-move" class="round-sequence">
+							<span id="pos-1" data-pos="1" data-color="" class="cell color color-empty selected">&nbsp;</span>
+							<c:forEach var="i" begin="2" end="${positionsNo}" step="1">
+								<span id="pos-${i}"data-pos="${i}" data-color="" class="cell color color-empty">
+									&nbsp;
+								</span>
+							</c:forEach>
+						</span>
+						<span class="cell round-result">&nbsp;</span>
+					</div>
+				</c:if>
+				<%-- NEXT MOVE end --%>
+
 			</div>
-		</div>
-		<%-- NEXT MOVE end --%>
+		</div> <%-- .history-area end --%>
 
-	<%--  COLOR SET start--%>
-	<div id="color-area" class="color-area">
-		<c:forEach var="i" begin="0" end="${fn:length(colors)-1}" step="1">
-			<c:set var="color"  value="${fn:substring(colors, i, i+1)}"/>
-			<span data-color="${color}" class="color color-${color}">
-				<c:out value="${color}" />
-			</span>
-		</c:forEach>
-	</div>
-	<%--  COLOR SET end--%>
+		<%--  COLOR SET start--%>
+		<c:if test="${not endOfGame}">
+			<div id="color-area" class="color-area">
+				<c:forEach var="i" begin="0" end="${fn:length(colors)-1}" step="1">
+					<c:set var="color"  value="${fn:substring(colors, i, i+1)}"/>
+					<span data-color="${color}" class="color color-${color}">
+						<c:out value="${color}" />
+					</span>
+				</c:forEach>
+			</div>
+		</c:if>
+		<%--  COLOR SET end--%>
 
-			<c:url value="/play" var="formAction" >
-				<%-- Comment following line if you prefer not to have sessionId in URL --%>
-				<c:param name="sessionId" value="${moveForm.sessionId}"/>
-			</c:url>
+		<c:url value="/play" var="formAction" >
+			<%-- Comment following line if you prefer not to have sessionId in URL --%>
+			<c:param name="sessionId" value="${moveForm.sessionId}"/>
+		</c:url>
 
-			<c:choose>
-				<c:when test="${not endOfGame}">
-				<%-- Game is not over yet: get next move --%>
-					<form:form modelAttribute="moveForm" action="${formAction}" cssStyle="sequence-area" autocomplete="off" method="post">
-						<form:errors path="move" cssClass="validation-error"/><br/>
-<%-- 						<form:input path="move" type="text" autofocus="autofocus" autocomplete="off"/> <!-- bind to moveForm.move--> --%>
-						<form:input path="move" type="text" autocomplete="off" value=""/> <!-- bind to moveForm.move-->
-
-				<%-- Uncomment this if you prefer to have sessionId as hidden parameter instead of embedded in URL
-					<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
-				--%>
-						<button class="send-move">Send my Move</button>
-					</form:form>
-				</c:when>
-
-				<c:otherwise>
-				<%-- Game is over --%>
-					<c:choose>
-						<c:when test="${userWon}">
-						<%-- TODO GC: use localized messages here --%>
-							<h2>Congratulations, you won !</h2>
-						</c:when>
-						<c:otherwise>
-							<h2>Sorry, you lost.</h2>
-							<h3>Secret sequence was: ${secret}</h3>
-						</c:otherwise>
-					</c:choose>
-					<p>
-						<a class="button-link" href="<c:url value="/play"/>">Play again</a>
-					</p>
-				</c:otherwise>
-			</c:choose>
+		<%--Error messages, "Send" move button or End-of.game messages--%>
+		<c:choose>
+			<c:when test="${not endOfGame}">
+			<%-- Game is not over yet: get next move --%>
+				<form:form modelAttribute="moveForm" action="${formAction}" cssStyle="sequence-area" autocomplete="off" method="post">
+					<form:errors path="move" cssClass="validation-error"/><br/>
+					<form:input path="move" type="hidden" autocomplete="off" value=""/> <!-- bind to moveForm.move-->
+			<%-- Uncomment this if you prefer to have sessionId as hidden parameter instead of embedded in URL
+				<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
+			--%>
+					<button class="send-move">Send my Move</button>
+				</form:form>
+			</c:when>
+			<c:otherwise>
+			<%-- Game is over --%>
+				<c:choose>
+					<c:when test="${userWon}">
+					<%-- TODO GC: use localized messages here --%>
+						<h2>Congratulations, you won !</h2>
+					</c:when>
+					<c:otherwise>
+						<h2>Sorry, you lost.</h2>
+						<h3>Secret sequence was: ${secret}</h3>
+					</c:otherwise>
+				</c:choose>
+				<p>
+					<a class="button-link" href="<c:url value="/play"/>">Play again</a>
+				</p>
+			</c:otherwise>
+		</c:choose>
 
 	</div>
 	<jsp:include page="./fragments/footer.jsp" />
