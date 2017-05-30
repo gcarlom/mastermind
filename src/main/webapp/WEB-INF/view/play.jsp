@@ -131,7 +131,7 @@
 				<form:input path="sessionId" type="hidden" /> <!-- bind to moveForm.sessionId-->
 			--%>
 				<div class="center-btn">
-					<button class="send-move">Send my Move</button>
+					<button id="send-move" class="send-move" disabled>Send</button>
 				</div>
 				</form:form>
 			</c:when>

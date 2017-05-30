@@ -148,8 +148,15 @@ div.center-btn {
 
 button.send-move {
 		padding: 0.5em;
-		background-color: #0090c9;
+		background-color: #0090c9; /*#00a851;*/
 		text-align: center;
+		width: 9em;
+}
+
+button.send-move:disabled,
+button.send-move[disabled] {
+		background-color: #333;
+		color: #aaa;
 }
 
 .button-link {
