@@ -24,8 +24,18 @@ body {
 
 .logo {
 	color:black;
-	font-size: 4.0em;
+	font-size: 4.7em;
 	font-family: 'Caveat', sans-serif;
+	font-weight: bold;
+}
+
+
+.trademark {
+    color: #111;
+    position: relative;
+    bottom: 1.45em;
+    left: 0.1em;
+    font-size: 0.4em;
 }
 
 div.history-area {
@@ -221,6 +231,7 @@ footer {
 	padding: 1em;
 	clear: left;
 	text-align: center;
+	font-style: italic;
 	font-size: 0.75em;
 	color: black;
 	background-color: whitesmoke;

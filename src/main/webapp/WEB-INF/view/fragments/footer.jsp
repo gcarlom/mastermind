@@ -1,1 +1,1 @@
-	<footer>&#169; Copyright Maxhar.com & G.Massari 2017  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Version: ${buildVersion}</footer>
+<footer>&#169; Master mind is a trademark of Invicta Plastics - Electronic adaptation (this game):&nbsp; G.Massari  &#169; 2017  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; Version: ${buildVersion}</footer>
