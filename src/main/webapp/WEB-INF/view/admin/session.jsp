@@ -58,7 +58,6 @@
 						<th>Game Id</th>
 						<th>Secret</th>
 						<th>No. of moves</th>
-						<th>Go to game</th>
 					</tr>
 					<c:forEach var="sessionInfo" items="${sessionInfo}" varStatus="counter">
 						<tr>
@@ -69,18 +68,16 @@
 								<c:out value="${sessionInfo.formattedTimestamp}" />
 							</td>
 							<td>
-								<c:out value="${sessionInfo.sessionId}" />
+							<span class="link-to-game">
+									<a href="<c:url value ='/play?sessionId=${sessionInfo.sessionId}'/>" target="_blank" title="&#x279c; Go to the game">
+									<c:out value="${sessionInfo.sessionId}" /></a>
+								</span>
 							</td>
 							<td>
 								<c:out value="${sessionInfo.secret}" />
 							</td>
 							<td>
 								<c:out value="${sessionInfo.numberOfMoves}" />
-							</td>
-							<td>
-								<span class="link-to-game">
-									<a href="<c:url value ='/play?sessionId=${sessionInfo.sessionId}'/>" target="_blank" >&#x279c;</a>
-								</span>
 							</td>
 						</tr>
 					</c:forEach>
