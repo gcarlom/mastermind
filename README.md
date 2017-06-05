@@ -3,7 +3,10 @@ Mastermind
 
 A Web application using
 - Spring MVC
-- Gradle to build project and generate the WAR file
+- Spring security
+- Plain Javascript (ES5)
+- Gradle for building the project
+
 
 ### Developer Instructions
 
@@ -17,9 +20,9 @@ A Web application using
 
 #### Running / Testing the application locally
 
-Using Gradle 2.6
+Using Gradle 2.6, gretty
 ```
-gradle jettyRun
+gradle [clean] jettyRun
 ```
 Deploys the application on localhost, start the server (jetty)
 

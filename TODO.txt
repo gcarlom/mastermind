@@ -3,6 +3,18 @@ TODOs / IDEAS for the Game
 
 Add tag on black/white pegs explaining what do they mean
 
+Move to Bitbucket (master + develop branch)
+
+- Add copyright to mastermind producer (Invicta?)
+
+Add mastermind instructions / history
+
+Add rules/how to play
+
+Integrate JSlint , Jasmine into gradle build
+
+Add Unit test on Javascript
+
 In session page: make sessionID a clickable link which opens the corresponding game (in new window)
 
 - Check CSRF implementation get rid of nasty error messages when no correct CSRF is found
@@ -13,36 +25,34 @@ In session page: make sessionID a clickable link which opens the corresponding g
 
 - Add a button to copy the current game as URL into clipboard (eg: http://localhost:8080/mastermind/play?sessionId=AAABW8s6hy-W9Zgk)
 
-- Add copyright to mastermind producer (Invicta?)
-
-Add mastermind history
-
-Add rules/how to play
-
-- Improve FE: Make entering moves more intuitive (clicking on color pools? drag and drop?)
+- Improve FE: Improve usability: Make entering moves more intuitive (clicking on color pools? drag and drop?)
 
 - Make game configurable:
      max no of moves, no of colors , which colors, duplicated colors (yes/no)
-     display colors with/wo letters, choose letter to associate with colors, pegs with/without characters
+     display colors with | w/o letters, choose letter to associate with colors, color pegs with/without letters
+     chose letters (numbers) to associate with each color
 
 - Implement SSO
 
 - Implement roles and Users storing them in a DB
 
-- Make cron job which removes old sessions configurable i.e. how often it runs, how many session it removes
+- Make cron job which removes old sessions more configurable i.e. how often it runs, how many session it removes
 
 - User log in / set game parameters (no. of hole, max moves (difficulty), no of colors,
       color codes as A..Z, 1..9, color char codes (R,G,B,..)
 		params might be set per game or as default
 
-- FE: show colors as letters encircled in colors or as SVG circles
+- FE: show colors as SVG circles
+
+- FE show selected position as bckgroung image?
 
 - FE: change interaction in  a way it's more mobile-friendly
 	- drag & drop?
-    - click on a color in color pool= select it & click on hole=put selected color there
     - click/touch on a hole open a context manu where you can choose the color
 
 - FE possibility to add (unknown "?" as note) + link notes to holes
+
+_possibility to clear all entered colors, clear one
 
 - FE animation?
 
