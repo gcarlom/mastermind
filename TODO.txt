@@ -1,31 +1,25 @@
 TODOs / IDEAS for the Game
 ============================
 
-Add tag on black/white pegs explaining what do they mean
-
 Move to Bitbucket (master + develop branch)
 
-- Add copyright to mastermind producer (Invicta?)
+Add mastermind instructions (rules/how to play)
 
-Add mastermind instructions / history
-
-Add rules/how to play
+Add history
 
 Integrate JSlint , Jasmine into gradle build
 
 Add Unit test on Javascript
 
-In session page: make sessionID a clickable link which opens the corresponding game (in new window)
-
 - Check CSRF implementation get rid of nasty error messages when no correct CSRF is found
 
-- Do not write password in clear: Use SHA of them
+- Do not write passwords in clear: Use SHA of them
 
 - Retrieve admin psw + build version from property files
 
 - Add a button to copy the current game as URL into clipboard (eg: http://localhost:8080/mastermind/play?sessionId=AAABW8s6hy-W9Zgk)
 
-- Improve FE: Improve usability: Make entering moves more intuitive (clicking on color pools? drag and drop?)
+ Improve FE: Improve usability: Make entering moves more intuitive: drag and drop? r-click?
 
 - Make game configurable:
      max no of moves, no of colors , which colors, duplicated colors (yes/no)
@@ -42,9 +36,9 @@ In session page: make sessionID a clickable link which opens the corresponding g
       color codes as A..Z, 1..9, color char codes (R,G,B,..)
 		params might be set per game or as default
 
-- FE: show colors as SVG circles
+- FE: show colors as SVG circles?
 
-- FE show selected position as bckgroung image?
+- FE show selected position as background image?
 
 - FE: change interaction in  a way it's more mobile-friendly
 	- drag & drop?
@@ -77,3 +71,7 @@ _possibility to clear all entered colors, clear one
 - Integrate checksum into GameID ?
 
 - Rename query parameter URL sessionId -> gameId
+
+Implement off-line mode
+
+Give possibility to save/restore a whole match
