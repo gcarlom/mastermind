@@ -64,14 +64,17 @@
 											<c:set var="pegClass"  value="peg-black" />
 											<%--  cross product (U-2A2F) --%>
 											<c:set var="pegSymbol"  value="&#x2a2f;" />
+											<c:set var="pegTooltip"  value="Right color, right position" />
 										</c:when>
 										<c:when test="${resultPeg == 'O'}">
 											<c:set var="pegClass"  value="peg-white" />
 											<c:set var="pegSymbol"  value="o" />
+											<c:set var="pegTooltip"  value="Right color, wrong position" />
 										</c:when>
 									</c:choose>
-									<span class="peg ${pegClass}">
-										${pegSymbol}
+									<span class="tooltip">
+										<span class="peg ${pegClass}">${pegSymbol}</span>
+										<span class="tooltiptext">${pegTooltip}</span>
 									</span>
 								</c:forEach>
 							</span>

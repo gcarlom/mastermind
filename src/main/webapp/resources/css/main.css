@@ -102,6 +102,49 @@ div.history-row {
 	color:white
 }
 
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 7em;
+    background-color: rgba(255,230,80, 0.9); /*#ffec66;*/
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 0.80rem;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+
+    /* top tooltip */
+    bottom: 115%;
+    left: 170%;
+    margin-left: -3.5em; /* Use half of the width to center the tooltip */
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 20%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(255,230,80, 0.9) transparent transparent transparent;
+}
+
 #move-area input.sequence {
   font-size: 1.2em;
   width: 0.7em;
