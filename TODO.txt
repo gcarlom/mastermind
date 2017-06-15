@@ -1,11 +1,33 @@
 TODOs / IDEAS for the Game
 ============================
 
+Remove JS debug info
+
+Refresh the page (F5) doesn't re-send the last move - add a refresh button (no move gets sent)
+
+Make game portable-device (mob.phone / pad) friendly
+
+Fix result layout in iPad (pegs not on a line for 4 result pegs)
+
+Add versioning in URL for styles (CSS)
+
+Add gradle task to update version
+
 Move to Bitbucket (master + develop branch)
 
 Add mastermind instructions (rules/how to play)
 
 Add history
+
+Add abandon match (reveal secret)
+
+reset whole entered next move, reset one color
+
+Reject a move if it has already entered
+
+Get suggestion
+
+Get number of possible combinations
 
 Integrate JSlint , Jasmine into gradle build
 
@@ -25,6 +47,9 @@ Add Unit test on Javascript
      max no of moves, no of colors , which colors, duplicated colors (yes/no)
      display colors with | w/o letters, choose letter to associate with colors, color pegs with/without letters
      chose letters (numbers) to associate with each color
+
+Add possibility to enter next move using keyboard
+
 
 - Implement SSO
 
@@ -72,6 +97,16 @@ _possibility to clear all entered colors, clear one
 
 - Rename query parameter URL sessionId -> gameId
 
-Implement off-line mode
+Implement off-line mode (history/secret stored locally encrypted)
 
 Give possibility to save/restore a whole match
+
+Share match
+  modes:
+   - each player gets same secret but plays independently
+   - each player gets same secret. may post next move at his/her turn, get updated situation (other's moves, win/lost game)
+
+Register user IP address in sessions
+
+
+Possibility to block requests from certain IP-addresses
