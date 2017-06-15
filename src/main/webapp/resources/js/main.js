@@ -48,8 +48,6 @@ var Main = (function() {
 		for (var i=0; i<positions.length; i++ ) {
 			var pos = positions[i];
 
-			console.log("--> "+ i +": '" +pos.className+ "'")
-
 			if (newPosition !== i+1) {
 				pos.className = pos.className.replace(/(?:^|\s)selected(?!\S)/g , '')
 			} else {
@@ -64,8 +62,6 @@ var Main = (function() {
 		selectedPosition= pos2;
 		for (var i=0; i<positions.length; i++ ) {
 			var posX = positions[i];
-
-			console.log("--> "+ i +": '" +posX.className+ "'")
 
 			if (selectedPosition !== i+1) {
 				posX.className = posX.className.replace(/(?:^|\s)selected(?!\S)/g , '')
@@ -99,12 +95,10 @@ var Main = (function() {
 		if (nextMoveArea) {
 			nextMoveArea.addEventListener("click", function(e) {
 				// e.target is the clicked element
-				console.log("-->Click event fired");
 				var elemClicked = e.target;
 				if(elemClicked && elemClicked.getAttribute('data-pos')) {
 					var posValue = elemClicked.getAttribute('data-pos');
 					var posAsInt =  parseInt(posValue, 10);
-					console.log("Hole no.", posAsInt, " was clicked!");
 					if (isNaN(posAsInt || posAsInt <1 || posAsInt > noOfPositions)) {
 						console.warn("Set selected position failed. Parsed 'data-pos' attribute: " + posValue + "is not a number or out of range.");
 					} else {
@@ -113,14 +107,13 @@ var Main = (function() {
 				}
 			});
 		} else {
-			console.log("Click event listener not set. No element found with id '" + nextMoveContainerId  + "'");
+			console.warn("Click event listener not set. No element found with id '" + nextMoveContainerId  + "'");
 		}
 
 		// Set UI Bindings for color area
 		if (colorArea) {
 			colorArea.addEventListener("click", function(e) {
 				// e.target is the clicked element
-				console.log("-->Click in color area");
 				var elemClicked = e.target;
 				if(elemClicked && elemClicked.getAttribute('data-color')) {
 					var col = elemClicked.getAttribute('data-color');
@@ -129,11 +122,9 @@ var Main = (function() {
 					selPos.className = selPos.className.replace(/(?:^|\s)color-(\S)+(?!\S)/g , colClass)
 					selPos.setAttribute('data-color', col);
 					selPos.textContent = col;
-					console.log("Color ", col, " was selected !");
 					selectNextPosition();
 
 					var move = getMoveAsString(positions)
-					console.log("--> move = "+ move);
 
 					if(isMoveComplete(positions)) {
 						moveTextField.value = move;
@@ -144,15 +135,13 @@ var Main = (function() {
 				}
 			});
 		} else {
-			console.log("Click event listener not set. No element found with id '" + nextMoveContainerId  + "'");
+			console.warn("Click event listener not set. No element found with id '" + nextMoveContainerId  + "'");
 		}
 	};
 
 	var init = function() {
-		console.log("--> init() START");
 		bindDomElements(elementIds);
 		setupBindings();
-		console.log("--> init() END");
 	};
 
 	return {
@@ -161,7 +150,5 @@ var Main = (function() {
 })();
 
 
-console.log("--> main.js START");
 Main.init();
-console.log("--> main.js END");
 
