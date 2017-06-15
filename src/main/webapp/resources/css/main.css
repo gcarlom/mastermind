@@ -24,18 +24,27 @@ body {
 
 .logo {
 	color:black;
-	font-size: 4.7em;
 	font-family: 'Caveat', sans-serif;
-	font-weight: bold;
+	font-size: 5.1em;
 }
 
+a.gamename {
+	text-decoration: none;
+}
+
+span.gamename {
+	font-weight: bold;
+	color:black;
+}
 
 .trademark {
-    color: #111;
-    position: relative;
-    bottom: 1.45em;
-    left: 0.1em;
-    font-size: 0.4em;
+	color: #333;
+	position: relative;
+	bottom: 2.5em;
+	left: 0.4em;
+	font-size: 0.25em;
+	font-weight: normal;
+	font-family: Arial;
 }
 
 div.history-area {
@@ -113,46 +122,50 @@ div.history-row {
 }
 
 .tooltip {
-    position: relative;
-    display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 7em;
-    background-color: rgba(255,230,80, 0.9); /*#ffec66;*/
-    color: black;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    font-size: 0.80rem;
+	visibility: hidden;
+	width: 7em;
+	background-color: rgba(255,230,80, 0.9); /*#ffec66;*/
+	color: black;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+	font-size: 0.80rem;
 
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
+	/* Position the tooltip text - see examples below! */
+	position: absolute;
+	z-index: 1;
 
-    /* top tooltip */
-    bottom: 115%;
-    left: 170%;
-    margin-left: -3.5em; /* Use half of the width to center the tooltip */
+	/* top tooltip */
+	bottom: 115%;
+	left: 170%;
+	margin-left: -3.5em; /* Use half of the width to center the tooltip */
 }
 
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+	visibility: visible;
+}
+
+.tooltip:focus .tooltiptext {
+	visibility: visible;
 }
 
 .tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    top: 100%; /* At the bottom of the tooltip */
-    left: 20%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: rgba(255,230,80, 0.9) transparent transparent transparent;
+	content: " ";
+	position: absolute;
+	top: 100%; /* At the bottom of the tooltip */
+	left: 20%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: rgba(255,230,80, 0.9) transparent transparent transparent;
 }
 
 #move-area input.sequence {
@@ -354,19 +367,19 @@ span.color.selected {
 }
 
 span.color.selected:after {
-    content: "_";
-    color: rgba(255, 0, 255, 0.0);
-    text-align: center;
-    font-size: 1.2em;
-    border-bottom: 2px;
-    background-color: rgba(255, 255, 255, 00);
-    width: 1.1em;
-    top: -6px;
-    left: -1px;
-    position: absolute;
-    border-width: 3px 0px 3px 0px;
-    border-color: #504949;
-    border-style: solid;
+	content: "_";
+	color: rgba(255, 0, 255, 0.0);
+	text-align: center;
+	font-size: 1.2em;
+	border-bottom: 2px;
+	background-color: rgba(255, 255, 255, 00);
+	width: 1.1em;
+	top: -6px;
+	left: -1px;
+	position: absolute;
+	border-width: 3px 0px 3px 0px;
+	border-color: #504949;
+	border-style: solid;
 }
 
 div.color-area {
